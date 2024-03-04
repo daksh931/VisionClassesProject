@@ -89,9 +89,12 @@ export default function Navbar() {
               {" "}
               Our Speciality
             </Link>
-            <Link className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+            <Link
+              to="/courses"
+              className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl"
+            >
               {" "}
-              Enterprise
+              Courses
             </Link>
             <Link className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               {" "}
@@ -106,8 +109,9 @@ export default function Navbar() {
           {/* Sign up login buttons right side Nav */}
 
           <div className=" text-center w-[100vw] flex items-center justify-end	">
-            <Button>Sign Up</Button>
-            <Button>Login</Button>
+            <Button to={"/signup"}>Sign Up</Button>
+
+            <Button to={"/login"}>Login</Button>
           </div>
         </div>
       </div>

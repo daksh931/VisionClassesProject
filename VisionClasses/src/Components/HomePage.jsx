@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="mainHomePage div min-h-[120vh]">
         <div className="flex  w-full justify-between	">
           <h1 className="font-mono text-[40px] font-bold 	p-4">
-            Demo Classes Available
+            Vision Classes
           </h1>
           <div className="flex mt-5 mr-10">
             <InformationCard />
