@@ -12,17 +12,17 @@ export const register = catchAsyncError(async(req,res,next) =>{
 
     const isEmail = await User.findOne({email});
     if(isEmail){
-        return next(ErrorHandler("Email Already Exist!"));
+        return next(new ErrorHandler("Email Already Exist!"));
     }
 
     const user = await User.create({
         name,
         email,
         phone,
-        role,
         password,
+        role,
     })
-    res.status(200).json({
+ res.status(200).json({
         sucess : true,
         message: "User registered!",
         user,

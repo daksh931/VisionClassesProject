@@ -39,12 +39,12 @@ const userSchema = new mongoose.Schema({
 });
 
 // Hashing password
-userSchema.pre("save", async (next)=>{
-    if(!this.isModified("password")){
+userSchema.pre('save',  async function (next){
+    if(!this.isModified('password')){
         next();
     }
     this.password = await bcrypt.hash(this.password,10);   // 10 is general value..
-} )
+}); 
 
 // Compairing password
 userSchema.methods.comparePassword = async (enteredPassword)=>{
@@ -52,8 +52,9 @@ userSchema.methods.comparePassword = async (enteredPassword)=>{
 }
 
 // generating a jwt tokem for auth
-userSchema.methods.getJWTTokem = ()=>{
+userSchema.methods.getJWTToken = ()=>{
     return jwt.sign({id: this._id},process.env.JWT_SECRET_KEY,{expiresIn: process.env.JWT_EXPIRE});
 };
 
 export const User = mongoose.model("User",userSchema);
+
