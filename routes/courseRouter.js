@@ -1,6 +1,8 @@
 import express from "express";
-import { getAllCourses } from "../controllers/courseController";
+import { getAllCourses, postCourse } from "../controllers/courseController.js";
+import { isAuthorized } from "../middleware/auth.js";
 const router = express.Router();
 
-router.get("/courses",getAllCourses);
+router.get("/getcourses",getAllCourses);
+router.post("/postCourse",isAuthorized,postCourse);
 export default router;
