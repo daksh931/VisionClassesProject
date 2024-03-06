@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please provide your password"],
         minLength: [8, "Password must be atleast 8 characters long"],
         maxLength: [32, "Password should not exceed 32 characters!"],
+        select : false, 
     },
 
     role:{
@@ -47,12 +48,13 @@ userSchema.pre('save',  async function (next){
 }); 
 
 // Compairing password
-userSchema.methods.comparePassword = async (enteredPassword)=>{
+userSchema.methods.comparePassword = async function (enteredPassword){
     return await bcrypt.compare(enteredPassword, this.password);
 }
 
-// generating a jwt tokem for auth
-userSchema.methods.getJWTToken = ()=>{
+// generating a jwt tokem for auth   ** Don't use '() =>' functions otherwise code will not work....
+    //                  don't use () => {}
+userSchema.methods.getJWTToken = function () {
     return jwt.sign({id: this._id},process.env.JWT_SECRET_KEY,{expiresIn: process.env.JWT_EXPIRE});
 };
 
