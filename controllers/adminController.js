@@ -5,9 +5,9 @@ import { Admin } from '../models/adminSchema.js';
 import { sendToken } from '../utils/jwtToken.js';
 
 export const register = catchAsyncError(async(req,res,next) =>{
-    const {name,email, password,phone, role} = req.body;
+    const {name,email, password,phone} = req.body;
 
-    if(!name || !email || !password || !phone || !role){
+    if(!name || !email || !password || !phone ){
         return next(new ErrorHandler("Please do not leave any input field blank!"))
     }
 
@@ -21,7 +21,6 @@ export const register = catchAsyncError(async(req,res,next) =>{
         email,
         phone,
         password,
-        role,
     })
 
     // sendind (admin,statusCode, res, message) values to sendToken()...
@@ -30,11 +29,11 @@ export const register = catchAsyncError(async(req,res,next) =>{
 
 
 export const login = catchAsyncError( async(req,res,next)=>{
-    const {email,password,role} = req.body;
+    const {email,password} = req.body;
 
-    if(!email, !password, !role){
+    if(!email, !password){
         return next(
-            new ErrorHandler("Please provide Email, Password and Role.",400)
+            new ErrorHandler("Please provide Email, Password.",400)
         )
     };
     const admin = await Admin.findOne({email}).select("+password");
@@ -42,13 +41,9 @@ export const login = catchAsyncError( async(req,res,next)=>{
         return next(new ErrorHandler("Invalid Email or Password.", 400));
     }
     const isPasswordMatched  = await admin.comparePassword(password);
-    console.log("working till here")
+    // console.log("working till here")
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid Email or Password", 400));
-    }
-
-    if(admin.role !== role ){
-        return next(new ErrorHandler("No admin found with this role", 400));
     }
 
     sendToken(admin,200 , res, "Admin loggedin Successfully!");

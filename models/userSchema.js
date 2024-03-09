@@ -29,10 +29,12 @@ const userSchema = new mongoose.Schema({
         select : false, 
     },
 
-    purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courseSchema"}],
+    purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courses"}],
 
 
-    role:["user"],
+    role:{
+        type: String,
+        default:"user"},
 
     createdAt:{
         type: Date,
