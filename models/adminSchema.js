@@ -28,7 +28,7 @@ const adminSchema = new mongoose.Schema({
         select : false, 
     },
 
-    role:"admin",
+    role:["admin"],
 
     createdAt:{
         type: Date,

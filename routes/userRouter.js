@@ -8,4 +8,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", isAuthorized,logout);
 
-export default router;
+
+const userRouter = router;
+export default userRouter;

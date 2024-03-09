@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please provide your Email"],
         validate : [validator.isEmail, "Please provide a valid Email"]
     },
+    
     phone:{
         type: Number,
         required:  [true, "Please provide your Phone Number"],
@@ -28,11 +29,11 @@ const userSchema = new mongoose.Schema({
         select : false, 
     },
 
-    purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courses"}],
+    purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courseSchema"}],
 
-    role:{
-        type : "user",
-    },
+
+    role:["user"],
+
     createdAt:{
         type: Date,
         default: Date.now(),

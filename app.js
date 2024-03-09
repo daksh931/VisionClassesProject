@@ -9,7 +9,6 @@ import cors from "cors";
 import { errorMiddleware } from "./middleware/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
-import courseRouter from './routes/courseRouter.js'
 
 const app = express();
 config({ path: "./config/config.env"}); //connection to env PORT

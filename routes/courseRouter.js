@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get("/getcourses",getAllCourses);
 router.post("/postCourse",isAuthorized,postCourse);
-router.post("/buyCourse",isAuthorized,buyCourse);
+
+const courseRouter = router;
 export default courseRouter;
