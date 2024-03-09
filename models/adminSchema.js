@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-
-const userSchema = new mongoose.Schema({
+//Admin
+const adminSchema = new mongoose.Schema({
     name:{
         type : String,
         required: [true, "Please provide your name"],
@@ -28,11 +28,8 @@ const userSchema = new mongoose.Schema({
         select : false, 
     },
 
-    purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courses"}],
+    role:"admin",
 
-    role:{
-        type : "user",
-    },
     createdAt:{
         type: Date,
         default: Date.now(),
@@ -40,7 +37,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Hashing password
-userSchema.pre('save',  async function (next){
+adminSchema.pre('save',  async function (next){
     if(!this.isModified('password')){
         next();
     }
@@ -48,15 +45,14 @@ userSchema.pre('save',  async function (next){
 }); 
 
 // Compairing password
-userSchema.methods.comparePassword = async function (enteredPassword){
+adminSchema.methods.comparePassword = async function (enteredPassword){
     return await bcrypt.compare(enteredPassword, this.password);
 }
 
 // generating a jwt tokem for auth   ** Don't use '() =>' functions otherwise code will not work....
     //                  don't use () => {}
-userSchema.methods.getJWTToken = function () {
+adminSchema.methods.getJWTToken = function () {
     return jwt.sign({id: this._id},process.env.JWT_SECRET_KEY,{expiresIn: process.env.JWT_EXPIRE});
 };
 
-export const User = mongoose.model("User",userSchema);
-
+export const Admin = mongoose.model("Admin",adminSchema);

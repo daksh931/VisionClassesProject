@@ -1,7 +1,8 @@
 import { catchAsyncError } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
+import { Admin } from "../models/adminSchema.js";
 import { Course } from "../models/courseSchema.js";
-import { User,Admin } from "../models/userSchema.js";
+import { User } from "../models/userSchema.js";
 
 export const getAllCourses = catchAsyncError( async(req,res,next)=>{
     const courses = await Course.find({});
@@ -12,12 +13,8 @@ export const getAllCourses = catchAsyncError( async(req,res,next)=>{
 });
 
 export const postCourse = catchAsyncError( async(req,res,next)=>{
-    const {role,_id} = req.user;
-    console.log(role,_id);
-    if(!req.user.publishedCourses){
         
-        const user = await User.findById({_id}).populate("publishedCourses");
-    }
+    
     if(role === "user"){
         return next( new ErrorHandler("User is not allowed to create courses",400));
     }

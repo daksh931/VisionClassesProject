@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.get("/getcourses",getAllCourses);
 router.post("/postCourse",isAuthorized,postCourse);
-export default router;
+router.post("/buyCourse",isAuthorized,buyCourse);
+export default courseRouter;
