@@ -15,80 +15,87 @@ export const getAllCourses = catchAsyncError( async(req,res,next)=>{
 
 // posting a course by admin only
 export const postCourse = catchAsyncError( async(req,res,next)=>{
+    
+    const user = req.cookies.user;
+    // console.log("cookie : " + req.cookies.user.email) 
 
-    console.log(req.user.id)
+    if(user.role === "user"){
+        return next( new ErrorHandler("User is not allowed to create courses",400));
+    }
+    const {title,
+        description,
+        price,
+        mode,} = req.body;
 
-    // const userId = req.user.id;
-    // console.log("user ID  "+req.user.id)
+    if(!title|| !description || !price || !mode){
+        return next(new ErrorHandler("Please fill or select all above options"))
+    }
 
-    // console.log(req.user)
+    const courseExist = await Course.findOne({title:title,description:description ,price:price,mode:mode })
+    // console.log("exist : " +courseExist)
+    if(courseExist){
+        return next(new ErrorHandler("Course Already exist in database!"))
+    }
 
-    // if(req.user.role === "user"){
-    //     return next( new ErrorHandler("User is not allowed to create courses",400));
-    // }
-    // const {title,
-    //     description,
-    //     price,
-    //     mode,} = req.body;
+    const postedBy = req.user.id;
+    const course = await Course.create({
+        title,
+        description,
+        price,
+        mode,
+        postedBy,
+    });
 
-    // if(!title|| !description || !price || !mode){
-    //     return next(new ErrorHandler("Please fill or select all above options"))
-    // }
-
-    // const postedBy = req.user.id;
-    // const course = await Course.create({
-    //     title,
-    //     description,
-    //     price,
-    //     mode,
-    //     postedBy,
-    // });
-
-    // res.status(200).json({
-    //     success: true,
-    //     message : "Job posted Sucessfully",
-    //     course,
-    // })
+    res.status(200).json({
+        success: true,
+        message : "Job posted Sucessfully",
+        course,
+    })
 })
 
 // only users can buy courses 
 export const buyCourse = catchAsyncError( async (req,res,next)=>{
-    const {_id,role} = req.user;
-    if(role === "admin"){
-        return next(new ErrorHandler(("Admin Can't buy Courses",400)))
+    const user = req.cookies.user;
+    // console.log(user)
+    if(user.role === "admin"){
+        return next(new ErrorHandler("Admin Can't buy Courses",400))
     }
-    const userId = _id; 
     // in Mongo stores as _id: new ObjectId('65ebd3cfcb8946451317ea55') 
     // _id.toString() will convert _id: new ObjectId('65ebd3cfcb8946451317ea55')  ==> 65ebd3cfcb8946451317ea55
     // ans easily queried to mongo to search
-    const currUser = await User.findById(userId)
+    // but we used different approach to get user details using cookies...
+
+    const currUser = await User.findById(user.id)
     // console.log(currUser)
     const courseId = req.params.courseId;
-    console.log(courseId)
+    // console.log(courseId)
+    const course = await Course.findById(courseId);
 
-    // console.log(currUser.purchasedCourses)
-    
-    console.log("purchased Courses " + currUser.purchasedCourses)
+    // const alreadyPurchasedCourses = currUser.purchasedCourses;
+    const alreadyPurchased = await User.find({purchasedCourses: {_id : courseId} })   
 
-    // const course = await Course.findById(courseId)  ;
-    // if(course){
-    //     const user = await User.findById({_id});
-    //     if(user){
-    //         user.purchasedCourses.push(course);
-    //         user.save();
+    console.log(alreadyPurchased)
+    if(alreadyPurchased.length !==0){
+        return next(new ErrorHandler("already Purchased Courses",400))
+    }
 
-    //         res.status(200).json({
-    //             success: true,
-    //             message : "Course purchased Sucessfully",
-    //             course,
-    //         })
-    //     }
-    //     else{
-    //         return next(new ErrorHandler("user not found"))
-    //     }
-    // }
-    // else{
-    //     return next(new ErrorHandler("course not found"))
-    // }
+    if(course){
+        if(currUser){
+            currUser.purchasedCourses.push(course);
+            currUser.save();
+
+            res.status(200).json({
+                success: true,
+                message : "Course purchased Sucessfully",
+                course,
+            })
+        }
+        else{
+            return next(new ErrorHandler("user not found"))
+        }
+    }
+    else{
+        return next(new ErrorHandler("course not found"))
+    }
 })
 // 2:14 https://www.youtube.com/watch?v=6xRWaTWl2P0&t=1764s

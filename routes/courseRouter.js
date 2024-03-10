@@ -4,6 +4,7 @@ import { isAuthorized } from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/getcourses",getAllCourses);
+
 router.post("/postCourse",isAuthorized,postCourse);
 router.post("/:courseId",isAuthorized,buyCourse);
 
