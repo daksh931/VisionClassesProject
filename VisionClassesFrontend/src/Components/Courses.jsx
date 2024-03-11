@@ -1,19 +1,41 @@
 import Course from "./ui/Course";
 import Navbar from "./Navbar";
 import coursesData from "../../public/data/Sampledata";
+import { useEffect, useState } from "react";
+
+
 
 export default function Courses() {
+const [courseData1, setCourseData]= useState([]);
+
+useEffect(()=>{
+
+  async function fetchData(){
+    await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
+      response.json().then((data)=>{
+        // console.log(data)
+        setCourseData(data.courses)
+      })
+    })
+  }
+
+  fetchData();
+},[])
+
+
   return (
     <>
       <Navbar />
       <div className="w-full min-h-[100vh] bg-slate-300">
         <div className=" flex  flex-wrap px-10 pt-5 pb-3 sm:pt-1  justify-center  w-full">
-          {coursesData.map((item) => (
+          {/* {console.log(courseData1.courses)} */}
+          {courseData1.map((item) => (
             <div className="flex basis-1/4 my-3 mx-2">
               <Course
                 key={item.id}
-                name={item.name}
+                name={item.title}
                 description={item.description}
+                price={item.price}
               />
             </div>
           ))}

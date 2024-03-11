@@ -11,7 +11,7 @@ const courseSchema = new mongoose.Schema({
         type:String,
         required  : [true,"Please provide course description"],
         minLength : [3, "title must be at least 3 characters long"],
-        maxLength : [50, "title cannot exceed 50 characters "],
+        maxLength : [120, "title cannot exceed 50 characters "],
     },
     price: {
         type: Number,

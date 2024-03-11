@@ -72,6 +72,7 @@ export const buyCourse = catchAsyncError( async (req,res,next)=>{
     const course = await Course.findById(courseId);
 
     // const alreadyPurchasedCourses = currUser.purchasedCourses;
+    // parsing nested object and checking whether user purchased course or not...
     const alreadyPurchased = await User.find({purchasedCourses: {_id : courseId} })   
 
     console.log(alreadyPurchased)

@@ -34,9 +34,12 @@ const adminSchema = new mongoose.Schema({
 
     createdAt:{
         type: Date,
-        default: Date.now(),
     },
-});
+    
+}, 
+{timestamps: true}
+
+);
 
 // Hashing password
 adminSchema.pre('save',  async function (next){
