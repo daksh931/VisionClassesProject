@@ -2,7 +2,6 @@ import { catchAsyncError } from "./catchAsyncErrors.js"
 import ErrorHandler from './error.js';
 import jwt from "jsonwebtoken"
 import {User} from "../models/userSchema.js"
-import { Admin } from "../models/adminSchema.js";
 
 export const isAuthorized = catchAsyncError(async(req,res,next )=>{
     const {token} = req.cookies;

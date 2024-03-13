@@ -1,7 +1,6 @@
 import express from "express";
 import {dbConnection} from './database/dbConnection.js'
 import userRouter from './routes/userRouter.js'
-import adminRouter from "./routes/adminRouter.js";
 import courseRouter from "./routes/courseRouter.js";
 import {config} from "dotenv";
 import applicationRouter from './routes/applicationRouter.js'
@@ -28,7 +27,7 @@ app.use(fileUpload({
 }))
 
 app.use('/api/v1/user', userRouter);
-app.use('/api/v1/admin', adminRouter);
+
 app.use('/api/v1/application', applicationRouter);
 app.use('/api/v1/course', courseRouter);
 

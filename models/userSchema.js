@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
 
     email :{
         type: String,
+        unique:true,
         required: [true, "Please provide your Email"],
         validate : [validator.isEmail, "Please provide a valid Email"]
     },
@@ -32,9 +33,11 @@ const userSchema = new mongoose.Schema({
     purchasedCourses: [{type : mongoose.Schema.Types.ObjectId, ref:"courses"}],
 
 
-    role:{
+    role: {
         type: String,
-        default:"user"},
+        required: [true, "Please select a role"],
+        enum: ["Job Seeker", "Employer"],
+      },
 
     createdAt:{
         type: Date,
