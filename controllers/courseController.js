@@ -1,6 +1,5 @@
 import { catchAsyncError } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
-import { Admin } from "../models/adminSchema.js";
 import { Course } from "../models/courseSchema.js";
 import { User } from "../models/userSchema.js";
 
@@ -15,10 +14,9 @@ export const getAllCourses = catchAsyncError( async(req,res,next)=>{
 
 // posting a course by admin only
 export const postCourse = catchAsyncError( async(req,res,next)=>{
-    
-    const user = req.cookies.user;
-    // console.log("cookie : " + req.cookies.user.email) 
-
+    // in req.user we are getting user details we can verify whether its admin or user
+    // console.log(req.user.role)
+    const user = req.user;
     if(user.role === "user"){
         return next( new ErrorHandler("User is not allowed to create courses",400));
     }

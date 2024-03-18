@@ -5,9 +5,9 @@ import { User } from '../models/userSchema.js';
 import { sendToken } from '../utils/jwtToken.js';
 
 export const register = catchAsyncError(async(req,res,next) =>{
-    const {name,email, password,phone} = req.body;
+    const {name,email, password,phone,role} = req.body;
 
-    if(!name || !email || !password || !phone ){
+    if(!name || !email || !password || !phone || !role){
         return next(new ErrorHandler("Please do not leave any input field blank!"))
     }
 
@@ -21,6 +21,7 @@ export const register = catchAsyncError(async(req,res,next) =>{
         email,
         phone,
         password,
+        role,
     })
 
     // sending (user,statusCode, res, message) values to sendToken()...
@@ -40,8 +41,10 @@ export const login = catchAsyncError( async(req,res,next)=>{
     if(!user){
         return next(new ErrorHandler("Invalid Email or Password.", 400));
     }
+
+    // comparing password with help of  comparePassword defined in userSchema....
     const isPasswordMatched  = await user.comparePassword(password);
-    console.log("working till here")
+    // console.log("working till here")
     if(!isPasswordMatched){
         return next(new ErrorHandler("Invalid Email or Password", 400));
     }

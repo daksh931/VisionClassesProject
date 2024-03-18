@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: [true, "Please select a role"],
-        enum: ["Job Seeker", "Employer"],
+        enum: ["admin", "user"],
       },
 
     createdAt:{
@@ -61,7 +61,9 @@ userSchema.methods.comparePassword = async function (enteredPassword){
 // generating a jwt tokem for auth   ** Don't use '() =>' functions otherwise code will not work....
     //                  don't use () => {}
 userSchema.methods.getJWTToken = function () {
-    return jwt.sign({id: this._id},process.env.JWT_SECRET_KEY,{expiresIn: process.env.JWT_EXPIRE});
+    return jwt.sign({id: this._id, email :this.email, role:this.role},
+                     process.env.JWT_SECRET_KEY,
+                     {expiresIn: process.env.JWT_EXPIRE});
 };
 
 export const User = mongoose.model("User",userSchema);
