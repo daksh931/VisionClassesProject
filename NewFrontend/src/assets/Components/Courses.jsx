@@ -1,28 +1,28 @@
 import Course from "./ui/Course";
-import Navbar from "./Navbar";
-import coursesData from "../../public/data/Sampledata";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
 export default function Courses() {
 
-const [courseData1, setCourseData]= useState([]);
+const [courseData, setCourseData]= useState([]);
 
 useEffect(()=>{
-  async function fetchData(){
-    await axios.get('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
+   function fetchData(){
+     axios.get('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
               console.log(response.data)
-              setCourseData(response.data)
-            })
+              setCourseData(response.data.courses)
+            });
+
+
     // await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
     //         response.json().then((data)=>{
     //           console.log(data)
     //           setCourseData(data.courses)
-  //   //         })
-  
+    //         })
+    //       })
 }
 
-fetchData()
+fetchData();
 },[])
 
 // await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
@@ -36,20 +36,22 @@ fetchData()
 
   return (
     <>
-      <Navbar />
-      
-      <div className="w-full min-h-[100vh] bg-slate-300">
-        
-
-
-
-        <Course
-        name={"Course name"}
-        description={
-          "desc of course desc of course desc of course desc of course desc of course desc of course desc of course desc of course desc "
-        } 
-        />
+    <div className="w-full min-h-[100vh] bg-slate-300">
+      <div className=" flex  flex-wrap px-10 pt-5 pb-3 sm:pt-1  justify-center  w-full">
+        {/* {console.log("courseData  " + courseData)} */}
+        {courseData.map((item) => (
+          <div className="flex basis-1/4 my-3 mx-2">
+            <Course
+              key={item.id}
+              name={item.title}
+              description={item.description}
+              price={item.price}
+            />
+          </div>
+        ))}
       </div>
-    </>
+      
+    </div>
+  </>
   );
 }

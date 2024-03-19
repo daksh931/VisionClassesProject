@@ -35,20 +35,28 @@ const [courseData1, setCourseData]= useState([]);
 
 
   return (
-    <>
+     <>
       <Navbar />
-      
       <div className="w-full min-h-[100vh] bg-slate-300">
-        
-
-
-
-        <Course
+        <div className=" flex  flex-wrap px-10 pt-5 pb-3 sm:pt-1  justify-center  w-full">
+          {/* {console.log(courseData1.courses)} */}
+          {courseData1.map((item) => (
+            <div className="flex basis-1/4 my-3 mx-2">
+              <Course
+                key={item.id}
+                name={item.title}
+                description={item.description}
+                price={item.price}
+              />
+            </div>
+          ))}
+        </div>
+        {/* <Course
         name={"Course name"}
         description={
           "desc of course desc of course desc of course desc of course desc of course desc of course desc of course desc of course desc "
         } 
-        />
+        /> */}
       </div>
     </>
   );

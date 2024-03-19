@@ -13,7 +13,7 @@ const app = express();
 config({ path: "./config/config.env"}); //connection to env PORT
 
 app.use(cors({
-    origin : [process.env.FRONTEND_URL],
+    // origin : [process.env.FRONTEND_URL],
     methods: ['GET','POST','DELETE','PUT'],
     credentials : true,
 }))
