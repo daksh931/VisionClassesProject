@@ -8,22 +8,22 @@ export default function Courses() {
 
 const [courseData1, setCourseData]= useState([]);
 
-// useEffect(()=>{
-//   async function fetchData(){
-//     await axios.get('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
-//               console.log(response.data)
-//               setCourseData(response.data)
-//             })
-//     // await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
-//     //         response.json().then((data)=>{
-//     //           console.log(data)
-//     //           setCourseData(data.courses)
-//   //   //         })
+useEffect(()=>{
+  async function fetchData(){
+    await axios.get('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
+              console.log(response.data)
+              setCourseData(response.data)
+            })
+    // await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
+    //         response.json().then((data)=>{
+    //           console.log(data)
+    //           setCourseData(data.courses)
+  //   //         })
   
-// }
+}
 
-// fetchData()
-// },[])
+fetchData()
+},[])
 
 // await fetch('http://localhost:4000/api/v1/course/getcourses').then((response)=>{
 //       response.json().then((data)=>{
