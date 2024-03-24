@@ -4,14 +4,6 @@ import { useState } from "react";
 import { redirect } from "react-router-dom";
 import { json } from "react-router-dom";
 import axios from 'axios';
-import useEffect(() => {
-  first
-
-  return () => {
-    second
-  }
-}, [third])
-
 
 export default function Signup() {
 
