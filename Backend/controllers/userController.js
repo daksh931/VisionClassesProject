@@ -4,6 +4,7 @@ import ErrorHandler from '../middleware/error.js';
 import { User } from '../models/userSchema.js';
 import { sendToken } from '../utils/jwtToken.js';
 
+ const [name, setname] = useState(second)
 export const register = catchAsyncError(async(req,res,next) =>{
     const {name,email, password,phone,role} = req.body;
 
