@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -43,6 +44,8 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date,
 });
 
 // Hashing password
@@ -56,6 +59,20 @@ userSchema.pre('save',  async function (next){
 // Compairing password
 userSchema.methods.comparePassword = async function (enteredPassword){
     return await bcrypt.compare(enteredPassword, this.password);
+}
+
+// reset password token
+userSchema.methods.getResetPasswordToken = async function(){
+    
+    const resetToken = crypto.randomBytes(20).toString("hex");
+    // hashing and adding to userSchema 
+    this.resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex")
+
+    this.resetPasswordExpire = Date.now() + 15* 60* 1000;
+    return resetToken;
 }
 
 // generating a jwt tokem for auth   ** Don't use '() =>' functions otherwise code will not work....

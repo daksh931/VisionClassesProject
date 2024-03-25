@@ -3,11 +3,41 @@ import ErrorHandler from "../middleware/error.js";
 import { Course } from "../models/courseSchema.js";
 import { User } from "../models/userSchema.js";
 
+
+// Get all products 
 export const getAllCourses = catchAsyncError( async(req,res,next)=>{
     const courses = await Course.find({});
     res.status(200).json({
         sucess:true,
         courses,
+    });
+});
+
+// update product
+export const updateCourse = catchAsyncError( async(req,res,next)=>{
+    const user = req.user;
+    if(user.role === "user"){
+        return next( new ErrorHandler("User is not allowed to update courses",400));
+    }
+
+    let course = await Course.findById(req.params.courseId);
+    console.log(course)
+    if(!course){
+        return res.status(500).json({
+            sucess:false,
+            message:" Course not found! "
+        })
+    }
+
+    course = await Course.findByIdAndUpdate(req.params.courseId,req.body,{
+        new:true,
+        runValidators: true,
+        useFindAndModify:false,
+    });
+ 
+    res.status(200).json({
+        sucess:true,
+        course
     });
 });
 
@@ -23,13 +53,14 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
     const {title,
         description,
         price,
-        mode,} = req.body;
+        mode,
+        image,} = req.body;
 
-    if(!title|| !description || !price || !mode){
+    if(!title|| !description || !price || !mode|| !image){
         return next(new ErrorHandler("Please fill or select all above options"))
     }
 
-    const courseExist = await Course.findOne({title:title,description:description ,price:price,mode:mode })
+    const courseExist = await Course.findOne({title:title,description:description ,price:price,mode:mode, image:image })
     // console.log("exist : " +courseExist)
     if(courseExist){
         return next(new ErrorHandler("Course Already exist in database!"))
@@ -41,6 +72,7 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
         description,
         price,
         mode,
+        image,
         postedBy,
     });
 
@@ -97,4 +129,26 @@ export const buyCourse = catchAsyncError( async (req,res,next)=>{
         return next(new ErrorHandler("course not found"))
     }
 })
+
+
+export const deleteCourse = catchAsyncError(async (req,res,next)=>{
+
+    const course  = await Course.findById(req.params.courseId);
+    if(!course){
+        return res.status(500).json({
+            success:false,
+            message:"Course Not found",
+        })
+    }
+    
+    console.log(course)
+    await course.deleteOne();
+
+    res.status(200).json({
+        success: true,
+        message : "Sucessfully Deleted",
+        course,
+    })
+})
+
 // 2:14 https://www.youtube.com/watch?v=6xRWaTWl2P0&t=1764s
