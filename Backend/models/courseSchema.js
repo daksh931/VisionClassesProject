@@ -26,6 +26,16 @@ const courseSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
         required:true,
+    },
+    images:{
+        public_id:{
+            type:String,
+            require:true,
+        },
+        url:{
+            type:String,
+            require:true,
+        },
     }
 })
 

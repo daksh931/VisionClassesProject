@@ -1,40 +1,42 @@
 import Input from "./ui/Input";
 import Button from "./ui/Button";
 import { useState } from "react";
-import { redirect } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { json } from "react-router-dom";
 import axios from 'axios';
 
+
 export default function Signup() {
+  const navigate = useNavigate();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhoneNumber] = useState();
   const [password, setPassword] = useState();
   const role = "admin";
+  
   const handleSubmit = async (e) => {
       e.preventDefault();
       console.log(name,email,phone,password,role);
       const response = await axios.post('http://localhost:4000/api/v1/user/register', 
       JSON.stringify({
-        name,email,phone,password,role}),
+        name: name,
+        email: email,
+        phone: phone,
+        password: password,
+        role: role}),
         {
           headers: {
-            'Content-Type' : 'application/json',
+            "Content-Type" : "application/json",
           },
         }
-        );
-    
-      console.log("worked");
-    if(response.status=== 422 || response.status ===401){
-      return response
-    }
+        ).then((res)=> {console.log(res.data)})
 
-    if(!response.ok){
-      throw json({message:" could not authenticate user"},{status:500})
-    }
+   
+
+  
     console.log("Sucessfully signedUp")
-    return redirect('/');
+    return navigate('/');
   }
 
 
