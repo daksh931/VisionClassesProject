@@ -63,9 +63,12 @@ userSchema.methods.comparePassword = async function (enteredPassword){
 
 // reset password token
 userSchema.methods.getResetPasswordToken = async function(){
-    
+    // only resetToken is sent to email not hashed form 
     const resetToken = crypto.randomBytes(20).toString("hex");
+
+    // we created resetToken and saved its hashed form in dbase
     // hashing and adding to userSchema 
+    // this.resetPasswordToken  means curr user resetPasswordToken is updated with token's hashed form...
     this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
