@@ -3,8 +3,8 @@ import {catchAsyncError} from '../middleware/catchAsyncErrors.js'
 import ErrorHandler from '../middleware/error.js';
 import { User } from '../models/userSchema.js';
 import { sendToken } from '../utils/jwtToken.js';
+import {sendEmail} from '../utils/sendEmail.js'
 
- const [name, setname] = useState(second)
 export const register = catchAsyncError(async(req,res,next) =>{
     const {name,email, password,phone,role} = req.body;
 
@@ -79,6 +79,7 @@ export const forgotPassword = catchAsyncError(async (req,res,next)=>{
     await user.save({validateBeforeSave : false});
 
     const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+                //req.protocol -> means (https or http)
 
     const message = `Your password reset token is - \n\n If you have not requested this email then. please ignore it `;
 
