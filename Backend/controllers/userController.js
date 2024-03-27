@@ -5,6 +5,7 @@ import { User } from '../models/userSchema.js';
 import { sendToken } from '../utils/jwtToken.js';
 import {sendEmail} from '../utils/sendEmail.js'
 import crypto from 'crypto';
+import bcrypt from "bcrypt";
 
 export const register = catchAsyncError(async(req,res,next) =>{
     const {name,email, password,phone,role} = req.body;
@@ -147,6 +148,34 @@ export const resetPassword = catchAsyncError(async (req,res,next)=> {
 
 });
 
+//update user password
+export const updatePassword = catchAsyncError( async(req,res,next)=>{
+    const user = await User.findById(req.user.id).select("+password");
+
+
+    console.log( req.body.oldPassword , req.body.newPassword, req.body.confirmPassword)
+    const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+    console.log("working")
+    
+    if(!isPasswordMatched){
+        return next(new ErrorHandler("Old password is Incorrect", 401));
+    }
+    
+    if(req.body.newPassword !== req.body.confirmPassword){
+        return next(new ErrorHandler("Password does not match", 401));
+    }
+
+    user.password = req.body.newPassword;
+    // password = await bcrypt.hash(password,10);
+    await user.save();
+
+    // logging in user after password change...
+    sendToken(user,200 ,res);
+})
+
+
+
+//get user details 
 export const getUserDetails = catchAsyncError(async(req,res,next)=>{
     const user = await User.findById(req.user.id);
 
