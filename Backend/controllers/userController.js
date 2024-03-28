@@ -153,9 +153,8 @@ export const updatePassword = catchAsyncError( async(req,res,next)=>{
     const user = await User.findById(req.user.id).select("+password");
 
 
-    console.log( req.body.oldPassword , req.body.newPassword, req.body.confirmPassword)
+    // console.log( req.body.oldPassword , req.body.newPassword, req.body.confirmPassword)
     const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
-    console.log("working")
     
     if(!isPasswordMatched){
         return next(new ErrorHandler("Old password is Incorrect", 401));
@@ -166,7 +165,6 @@ export const updatePassword = catchAsyncError( async(req,res,next)=>{
     }
 
     user.password = req.body.newPassword;
-    // password = await bcrypt.hash(password,10);
     await user.save();
 
     // logging in user after password change...
@@ -184,3 +182,24 @@ export const getUserDetails = catchAsyncError(async(req,res,next)=>{
         user
     })
 })
+
+
+// update user Profile Details
+
+export const userUpdateDetails = catchAsyncError(async(req,res,next)=>{
+    
+    const updatedProfile = {
+        name:req.body.name,
+        email:req.body.email
+    };
+    
+    const user = await User.findByIdAndUpdate(req.user.id, updatedProfile, {
+        new: true,
+        runValidators : true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({
+        success:true,
+    });
+});
