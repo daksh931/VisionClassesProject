@@ -203,3 +203,5 @@ export const userUpdateDetails = catchAsyncError(async(req,res,next)=>{
         success:true,
     });
 });
+
+// add such api routes Admin can remove,add,update normal user details... 

@@ -3,8 +3,8 @@ import { buyCourse, deleteCourse, getAllCourses, postCourse, updateCourse } from
 import { isAuthorized } from "../middleware/auth.js";
 const router = express.Router();
 
-router.get("/getcourses",getAllCourses);
 
+router.get("/getcourses",getAllCourses);
 router.post("/postCourse",isAuthorized,postCourse);
 router.post("/:courseId",isAuthorized,buyCourse);
 router.put("/update/:courseId",isAuthorized,updateCourse);

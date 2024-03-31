@@ -18,6 +18,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
       e.preventDefault();
       console.log(name,email,phone,password,role);
+      
       const response = await axios.post('http://localhost:4000/api/v1/user/register', 
       JSON.stringify({
         name: name,
@@ -29,16 +30,11 @@ export default function Signup() {
           headers: {
             "Content-Type" : "application/json",
           },
-        }
-        ).then((res)=> {console.log(res.data)})
-
-   
-
+        }).then((res)=> {console.log(res.data)})
   
     console.log("Sucessfully signedUp")
     return navigate('/');
   }
-
 
   return (
     <>
@@ -53,11 +49,15 @@ export default function Signup() {
             <Input placeholder={"Name"} onChange={(e) => setName(e.target.value)} classname="mt-5" />
             <Input placeholder={"Email"} onChange={(e) => setEmail(e.target.value)} classname="mt-5" />
             <Input placeholder={"Phone Number"} onChange={(e) => setPhoneNumber(e.target.value)} classname="mt-5" />
-            <Input placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} classname="mt-5" />
+            <Input type={'password'} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} classname="mt-5" />
 
             <div className="flex justify-center w-full">
               {/* <Button to={'/'} style={"px-5 mt-5"} > Signup </Button> */}
-              <button type="submit" className={"px-5 mt-5"} > Signup </button>
+            {/* //custom Button component not working */}
+
+
+            <button type="submit"  className="align-middle min-h-8 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">                
+                 Signup </button>
             </div>
           </div>
         </div>
