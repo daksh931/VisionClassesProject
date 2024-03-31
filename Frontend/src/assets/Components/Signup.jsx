@@ -4,10 +4,13 @@ import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { json } from "react-router-dom";
 import axios from 'axios';
+import {useDispatch} from "react-redux";
+import { setToken, setsignupData } from "../../store/Slices/authSlice";
 
 
 export default function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -19,19 +22,25 @@ export default function Signup() {
       e.preventDefault();
       console.log(name,email,phone,password,role);
       
-      const response = await axios.post('http://localhost:4000/api/v1/user/register', 
-      JSON.stringify({
+      const signupData = {
         name: name,
         email: email,
         phone: phone,
         password: password,
-        role: role}),
+        role: role}
+
+      const response = await axios.post('http://localhost:4000/api/v1/user/register', 
+      JSON.stringify(signupData),
         {
           headers: {
             "Content-Type" : "application/json",
           },
-        }).then((res)=> {console.log(res.data)})
+        }).then((res)=> {
+          dispatch(setToken(res.data.token))
+          // console.log(res.data)
+        })
   
+        dispatch(setsignupData(signupData))
     console.log("Sucessfully signedUp")
     return navigate('/');
   }

@@ -5,17 +5,21 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import Button from "./ui/Button";
+import { useSelector } from "react-redux";
+
 
 export default function Navbar() {
   const [navNutton, setNavButton] = useState(true);
 
+  const {token,signupData} = useSelector((state)=> state.auth)
+  // console.log("from Navbar", token,signupData)
   const navSet = () => {
     setNavButton((navNutton) => !navNutton);
   };
 
   return (
     <>
-      <div className="mainNav  p-0 m-0 top-0">
+      <div id="mainNav" className=" p-0 m-0 top-0">
         <div className=" sm:hidden">
           <button onClick={navSet}>
             <div
@@ -36,7 +40,7 @@ export default function Navbar() {
         </div>
 
         {/* lower to sm screen  */}
-        <div className="LowerMain sm:hidden ">
+        <div id="LowerMain" className="sm:hidden ">
           <div
             className={` z-10 navItems  flex-col absolute text-xl pt-4 pb-[100px]  text-start h-[100vh] w-[85vw]  px-2 py-1 text-white ${
               navNutton ? "hidden" : "top-15 pt-0 flex "
@@ -76,7 +80,7 @@ export default function Navbar() {
         <div
           className="navItems hidden sm:flex h-12 w-full justify-start text-white"
           style={{ backgroundColor: "rgb(50,51,52)" }}
-        >
+          >
           <div className="flex flex-nowrap text-nowrap ">
             <Link
               to="/"
@@ -108,11 +112,20 @@ export default function Navbar() {
 
           {/* Sign up login buttons right side Nav */}
 
-          <div className=" text-center w-[100vw] flex items-center justify-end	">
+          {token == null && <div className=" text-center w-[100vw] flex items-center justify-end	">
             <Button to={"/signup"}>Sign Up</Button>
 
             <Button to={"/login"}>Login</Button>
-          </div>
+            
+          </div>}
+          {token !== null && 
+            <div className=" text-center w-[100vw] flex items-center justify-end	">
+              <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+                Hello {signupData.name}
+              </h1>
+            </div>
+          }
+        
         </div>
       </div>
     </>

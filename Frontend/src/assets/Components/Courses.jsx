@@ -39,8 +39,8 @@ fetchData();
     <div className="w-full min-h-[100vh] bg-slate-300">
       <div className=" flex  flex-wrap px-10 pt-5 pb-3 sm:pt-1  justify-center  w-full">
         {/* {console.log("courseData  " + courseData)} */}
-        {courseData.map((item) => (
-          <div className="flex basis-1/4 my-3 mx-2">
+            {courseData.map((item,index) =>
+          <div className="flex basis-1/4 my-3 mx-2"  key={index}>
             <Course
               key={item.id}
               name={item.title}
@@ -48,7 +48,7 @@ fetchData();
               price={item.price}
             />
           </div>
-        ))}
+        )}
       </div>
       
     </div>

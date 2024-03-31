@@ -1,7 +1,7 @@
 export default function Input(props) {
   return (
     <>
-      <div class=" p-2 ">
+      <div className=" p-2 ">
         <label
           htmlFor={`${props.placeholder} `}
           className="block text-md font-medium text-gray-900 dark:text-white"
