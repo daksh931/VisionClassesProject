@@ -36,11 +36,13 @@ export default function Signup() {
             "Content-Type" : "application/json",
           },
         }).then((res)=> {
+          localStorage.setItem("token" , JSON.stringify(res.data.token))
           dispatch(setToken(res.data.token))
           // console.log(res.data)
         })
-  
+        
         dispatch(setsignupData(signupData))
+        localStorage.setItem("user", JSON.stringify(signupData))
     console.log("Sucessfully signedUp")
     return navigate('/');
   }
