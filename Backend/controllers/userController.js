@@ -30,6 +30,7 @@ export const register = catchAsyncError(async(req,res,next) =>{
 
     // sending (user,statusCode, res, message) values to sendToken()...
     sendToken(user, 201,res, "User registered Successfully!!");
+    
 });
 
 

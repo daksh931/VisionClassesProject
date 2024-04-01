@@ -4,9 +4,7 @@ import { isAuthorized } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.post("/register", register, (req,res)=>{
-    const user = req.user;
-});
+router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", isAuthorized,logout);
 router.get("/details", isAuthorized,getUserDetails);

@@ -6,6 +6,7 @@ import { json } from "react-router-dom";
 import axios from 'axios';
 import {useDispatch} from "react-redux";
 import { setToken, setsignupData } from "../../store/Slices/authSlice";
+import { useSelector } from "react-redux";
 
 
 export default function Signup() {
@@ -17,6 +18,7 @@ export default function Signup() {
   const [phone, setPhoneNumber] = useState();
   const [password, setPassword] = useState();
   const role = "admin";
+  const {token,signupData} = useSelector((state)=> state.auth)
   
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -34,16 +36,23 @@ export default function Signup() {
         {
           headers: {
             "Content-Type" : "application/json",
+            
           },
+          withCredentials: true, // help to set cookies in browser from backend server
         }).then((res)=> {
-          localStorage.setItem("token" , JSON.stringify(res.data.token))
           dispatch(setToken(res.data.token))
-          // console.log(res.data)
+          localStorage.setItem("token" , JSON.stringify(res.data.token))
+
+          
+          dispatch(setsignupData({
+            name: name,
+            email: email,
+            role: role}))
+          localStorage.setItem("user", JSON.stringify(signupData))
         })
         
-        dispatch(setsignupData(signupData))
-        localStorage.setItem("user", JSON.stringify(signupData))
-    console.log("Sucessfully signedUp")
+       
+    // console.log("Sucessfully signedUp")
     return navigate('/');
   }
 

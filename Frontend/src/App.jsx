@@ -4,6 +4,7 @@ import Navbar from './assets/Components/Navbar'
 import Login from './assets/Components/Login'
 import Courses from './assets/Components/Courses'
 import Signup from './assets/Components/Signup'
+import Logout from './assets/Components/Logout'
 
 function App() {
 
@@ -13,8 +14,9 @@ function App() {
       <Navbar />
       
       <Routes >
-        <Route path='/login' element={ <Login /> }/>
         <Route path='/signup' element={ <Signup /> }/>
+        <Route path='/login' element={ <Login /> }/>
+        <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
       </Routes>
     </div>
