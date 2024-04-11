@@ -24,7 +24,7 @@ const Logout = () => {
             localStorage.setItem("user",null)
             })
         
-        console.log(response)
+        // console.log(response)
         return navigate('/')
     }
     handleLogout();
