@@ -141,7 +141,7 @@ export const deleteCourse = catchAsyncError(async (req,res,next)=>{
         })
     }
     
-    console.log(course)
+    // console.log(course)
     await course.deleteOne();
 
     res.status(200).json({
