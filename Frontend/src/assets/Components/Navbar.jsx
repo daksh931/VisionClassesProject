@@ -9,8 +9,10 @@ import { useSelector } from "react-redux";
 
 
 export default function Navbar() {
-  const {token,signupData} = useSelector((state)=> state.auth)
-  
+  const {token,userData} = useSelector((state)=> state.auth)
+
+  // console.log(userData)
+
   const [navNutton, setNavButton] = useState(true);
   const navSet = () => {
     setNavButton((navNutton) => !navNutton);
@@ -120,8 +122,7 @@ export default function Navbar() {
           {token !== null && 
             <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
               <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
-                Hello {signupData.name}
-                {console.log()}
+                Hello {userData.name}
               </h1>
               <Button to={"/logout"}>Logut</Button>
             </div>

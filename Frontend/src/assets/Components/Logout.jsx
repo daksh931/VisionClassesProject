@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { setToken,setsignupData } from '../../store/Slices/authSlice';
+import { setToken,setUserData } from '../../store/Slices/authSlice';
 
 const Logout = () => {
 
@@ -20,7 +20,7 @@ const Logout = () => {
             dispatch(setToken(null))
             localStorage.setItem("token",null)
 
-            dispatch(setsignupData(null))
+            dispatch(setUserData(null))
             localStorage.setItem("user",null)
             })
         

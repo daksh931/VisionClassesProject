@@ -3,29 +3,48 @@ import Button from "./ui/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setToken, setUserData } from "../../store/Slices/authSlice";
+
+
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async(e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const {token, userData} = useSelector((state)=> state.auth);
+  const handleLogin = async (e) => {
     e.preventDefault();
     
     console.log(email,password)
-    const response = await axios.post("http://localhost:4000/api/v1/user/login",
-    JSON.stringify({
+    const logindata = {
       email:email,
-      password:password
-    }),
+      password:password,
+    }
+
+    const response = await axios.post("http://localhost:4000/api/v1/user/login",
+    JSON.stringify(logindata),
     {
       headers:{
         "Content-Type": "application/json",
-      }
-    }).then((res)=> {console.log(res.data)})
+      },
+      withCredentials:true,
+    }).then((res)=> {
+      console.log(res.data.user)
+
+      dispatch(setToken(JSON.stringify(res.data.token)))
+      localStorage.setItem("token",JSON.stringify(res.data.token))
+      
+      dispatch(setUserData(res.data.user))
+      localStorage.setItem("user",JSON.stringify(res.data.user))
+    
+    })
     
     // console.log(res.data.token)
-
+    // console.log(loginData)
     console.log("Success Login")
     return navigate('/')
   }

@@ -2,10 +2,9 @@ import Input from "./ui/Input";
 import Button from "./ui/Button";
 import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
-import { json } from "react-router-dom";
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-import { setToken, setsignupData } from "../../store/Slices/authSlice";
+import { setToken, setUserData } from "../../store/Slices/authSlice";
 import { useSelector } from "react-redux";
 
 
@@ -18,7 +17,7 @@ export default function Signup() {
   const [phone, setPhoneNumber] = useState();
   const [password, setPassword] = useState();
   const role = "admin";
-  const {token,signupData} = useSelector((state)=> state.auth)
+  const {token,userData} = useSelector((state)=> state.auth)
   
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -44,11 +43,11 @@ export default function Signup() {
           localStorage.setItem("token" , JSON.stringify(res.data.token))
 
           
-          dispatch(setsignupData({
+          dispatch(setUserData({
             name: name,
             email: email,
             role: role}))
-          localStorage.setItem("user", JSON.stringify(signupData))
+          localStorage.setItem("user", JSON.stringify(userData))
         })
         
        
