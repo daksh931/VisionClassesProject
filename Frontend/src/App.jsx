@@ -5,6 +5,7 @@ import Login from './assets/Components/Login'
 import Courses from './assets/Components/Courses'
 import Signup from './assets/Components/Signup'
 import Logout from './assets/Components/Logout'
+import AddCourse from './assets/Components/AddCourse'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={ <Login /> }/>
         <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
+        <Route path='/addCourse' element={ <AddCourse /> }/>
       </Routes>
     </div>
   )

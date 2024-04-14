@@ -3,14 +3,21 @@ import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import { setToken } from "../../store/Slices/authSlice";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {token,userData} = useSelector((state)=> state.auth)
 
+  if(userData==null && token!=null){
+    console.log(userData)
+    navigate('/logout')    
+  }
   // console.log(userData)
 
   const [navNutton, setNavButton] = useState(true);
@@ -122,9 +129,9 @@ export default function Navbar() {
           {token !== null && 
             <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
               <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
-                Hello {userData.name}
+                Hi, {userData.name}
               </h1>
-              <Button to={"/logout"}>Logut</Button>
+              <Button to={"/logout"}>Logout</Button>
             </div>
           }
         
