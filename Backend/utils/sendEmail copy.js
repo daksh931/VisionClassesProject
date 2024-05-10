@@ -3,14 +3,15 @@ import nodeMailer from 'nodemailer';
 export const sendEmail = async (options)=>{
 
     const transporter = nodeMailer.createTransport({
-        
-        host: "sandbox.smtp.mailtrap.io", 
+        service : "gmail",
+        host: "smtp.gmail.com", 
         // service : process.env.SMPT_SERVICE,
-        port:2525,
+        port:587,
+        secure: false,
         auth:{
-            user:process.env.SMPT_MAIL,
-            pass: process.env.SMPT_PASSWORD,
-        }
+            user: process.env.USER,
+            pass: process.env.APP_
+        },
     })
     // console.log(options)
     const mailOptions ={
