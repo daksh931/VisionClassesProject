@@ -54,7 +54,6 @@ export const login = catchAsyncError( async(req,res,next)=>{
         return next(new ErrorHandler("Invalid Email or Password", 400));
     }
 
-   
     sendToken(user,200 , res, "user loggedin Successfully!");
 })
 
@@ -83,7 +82,7 @@ export const forgotPassword = catchAsyncError(async (req,res,next)=>{
 
     await user.save({validateBeforeSave : false});
 
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/user/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/user/password/reset${user._id}/${resetToken}`;
                 //req.protocol -> means (https or http)
 
     const message = `Your password reset token is -\n ${resetPasswordUrl}  \n \n If you have not requested this email then. please ignore it `;

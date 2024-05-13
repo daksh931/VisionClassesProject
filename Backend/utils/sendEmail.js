@@ -2,6 +2,8 @@ import nodeMailer from 'nodemailer';
 import { config } from 'dotenv';
 config({ path: "../config/config.env"}); //connection to env PORT
 
+//https://www.youtube.com/watch?v=QDIOBsMBEI0 video helped out 
+
 export const sendEmail = async (options)=>{
 
     const transporter = nodeMailer.createTransport({
