@@ -78,7 +78,7 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
 
     res.status(200).json({
         success: true,
-        message : "Job posted Sucessfully",
+        message : "Course (added) posted Sucessfully",
         course,
     })
 })
