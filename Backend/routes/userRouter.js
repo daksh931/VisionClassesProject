@@ -9,8 +9,9 @@ router.post("/login", login);
 router.get("/logout", isAuthorized,logout);
 router.get("/details", isAuthorized,getUserDetails);
 
+router.put("/password/reset/:userid/:token",resetPassword);
+
 router.post("/password/forgot",isAuthorized,forgotPassword);
-router.put("/password/reset/:token",resetPassword);
 router.put("/updatePassword",isAuthorized, updatePassword);
 
 router.put("/updateProfile",isAuthorized, userUpdateDetails);

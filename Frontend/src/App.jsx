@@ -6,6 +6,7 @@ import Courses from './assets/Components/Courses'
 import Signup from './assets/Components/Signup'
 import Logout from './assets/Components/Logout'
 import AddCourse from './assets/Components/AddCourse'
+import ResetPassword from './assets/Components/ResetPassword'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
         <Route path='/addCourse' element={ <AddCourse /> }/>
+        <Route path='/password/reset/:userid/:token' element={ <ResetPassword /> }/>
       </Routes>
     </div>
   )

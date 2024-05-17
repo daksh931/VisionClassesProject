@@ -6,6 +6,9 @@ import { sendToken } from '../utils/jwtToken.js';
 import {sendEmail} from '../utils/sendEmail.js'
 import crypto from 'crypto';
 import bcrypt from "bcrypt";
+import { config } from 'dotenv';
+config({ path: "../config/config.env"}); //connection to env PORT
+
 
 export const register = catchAsyncError(async(req,res,next) =>{
     const {name,email, password,phone,role} = req.body;
@@ -82,7 +85,7 @@ export const forgotPassword = catchAsyncError(async (req,res,next)=>{
 
     await user.save({validateBeforeSave : false});
 
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/user/password/reset${user._id}/${resetToken}`;
+    const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${user._id}/${resetToken}`;
                 //req.protocol -> means (https or http)
 
     const message = `Your password reset token is -\n ${resetPasswordUrl}  \n \n If you have not requested this email then. please ignore it `;
