@@ -2,7 +2,7 @@ import { catchAsyncError } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
 import { Course } from "../models/courseSchema.js";
 import { User } from "../models/userSchema.js";
-
+// import {uploadOnCloudinary} from "../utils/Cloudinary";
 
 // Get all products 
 export const getAllCourses = catchAsyncError( async(req,res,next)=>{
@@ -41,38 +41,48 @@ export const updateCourse = catchAsyncError( async(req,res,next)=>{
     });
 });
 
-
 // posting a course by admin only
 export const postCourse = catchAsyncError( async(req,res,next)=>{
+    // console.log("working1122",req)
+    console.log("File are here" , req.body)
+    
     // in req.user we are getting user details we can verify whether its admin or user
     // console.log(req.user.role)
     const user = req.user;
+    
+    // req.files ".files" functionality is given by multer(middleware to us)
+    
     if(user.role === "user"){
         return next( new ErrorHandler("User is not allowed to create courses",400));
     }
+
+
     const {title,
         description,
         price,
-        mode,
-        image,} = req.body;
+        mode} = req.body;
 
-    if(!title|| !description || !price || !mode|| !image){
+    if(!title|| !description || !price || !mode){
         return next(new ErrorHandler("Please fill or select all above options"))
     }
 
-    const courseExist = await Course.findOne({title:title,description:description ,price:price,mode:mode, image:image })
+    const courseExist = await Course.findOne({title:title,description:description ,price:price,mode:mode })
     // console.log("exist : " +courseExist)
     if(courseExist){
         return next(new ErrorHandler("Course Already exist in database!"))
     }
+ 
+    const imagee = "urltjhvh g hgiuh iuhiuhemp"
+
 
     const postedBy = req.user.id;
+
     const course = await Course.create({
         title,
         description,
         price,
         mode,
-        image,
+        image:imagee,
         postedBy,
     });
 
