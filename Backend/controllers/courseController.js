@@ -2,7 +2,7 @@ import { catchAsyncError } from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
 import { Course } from "../models/courseSchema.js";
 import { User } from "../models/userSchema.js";
-// import {uploadOnCloudinary} from "../utils/Cloudinary";
+import {uploadOnCloudinary} from "../utils/Cloudinary.js"
 
 // Get all products 
 export const getAllCourses = catchAsyncError( async(req,res,next)=>{
@@ -44,7 +44,8 @@ export const updateCourse = catchAsyncError( async(req,res,next)=>{
 // posting a course by admin only
 export const postCourse = catchAsyncError( async(req,res,next)=>{
     // console.log("working1122",req)
-    console.log("File are here" , req.body)
+    console.log("Body here" , req.body)
+    console.log("File here" , req.file)
     
     // in req.user we are getting user details we can verify whether its admin or user
     // console.log(req.user.role)
@@ -71,18 +72,19 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
     if(courseExist){
         return next(new ErrorHandler("Course Already exist in database!"))
     }
- 
-    const imagee = "urltjhvh g hgiuh iuhiuhemp"
-
-
     const postedBy = req.user.id;
+ 
+    // image handle on cloudinary
+    const imagePath= req.file.path;
+    const uploadedImage = await uploadOnCloudinary(imagePath);
+
 
     const course = await Course.create({
         title,
         description,
         price,
         mode,
-        image:imagee,
+        image:uploadedImage.url,
         postedBy,
     });
 

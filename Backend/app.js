@@ -23,11 +23,9 @@ app.use(cors({
 
 app.use(cookieParser());
 app.use(express.json()); // parse json neglect other data...
-app.use(express.urlencoded({extended: true})); // string conversion to json format
-app.use(fileUpload({
-    useTempFiles: true,
-    tempFileDir : "/tmp/",
-}))
+// app.use(express.urlencoded({extended: true})); // string conversion to json format
+app.use(express.urlencoded({extended: false}))
+
 
 app.use('/api/v1/user', userRouter);
 
