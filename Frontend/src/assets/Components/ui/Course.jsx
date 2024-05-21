@@ -7,8 +7,8 @@ export default function Course(props) {
       <div className="max-w-72 p-2 flex flex-col justify-between shadow-xl  shadow-slate-400 hover:shadow-slate-600 rounded-md border-4 border-white min-h-72 bg-slate-200">
       <div className="mb-1">
         <img
-          className=" pb-2 rounded-md"
-          src={"image.png"}
+          className=" pb-2 rounded-md object-cover h-56 w-96" 
+          src={props.image}
           alt="Course Image "
           ></img>
 

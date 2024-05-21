@@ -15,6 +15,7 @@ const AddCourse = () => {
   const [description, setDescription] = useState("")
   const [price, setPrice] = useState("")
   const [mode, setMode] = useState("")
+  const [image, setImage] = useState()
 
   const { addCourse } = useSelector((state) => state.addCourse);
 
@@ -28,18 +29,16 @@ const AddCourse = () => {
       description: description,
       price: price,
       mode: mode,
-      image: {
-        public_id: "sample_url_id",
-        url: "sample_url"
-      }
+      image: image
     }
     
     console.log(cData)
     const response = await axios.post('http://localhost:4000/api/v1/course/postCourse',
-      JSON.stringify(cData),
+      // JSON.stringify(cData),
+      cData,
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":  "multipart/form-data",
         },
         withCredentials: true,
       }).then((res)=>{
@@ -61,7 +60,7 @@ const AddCourse = () => {
             <Input placeholder={"Course Description"} onChange={(e) => setDescription(e.target.value)} />
             <Input placeholder={"Course price"} onChange={(e) => setPrice(e.target.value)} />
             <Input placeholder={" Mode of course"} onChange={(e) => setMode(e.target.value)} />
-
+            <input type='file' onChange={(e) => setImage(e.target.files[0])} />
             <button type="submit" className="align-middle min-h-8 select-none font-sans font-bold text-center
          uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none
           text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700

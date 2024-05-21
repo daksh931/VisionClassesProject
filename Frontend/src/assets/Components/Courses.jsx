@@ -46,6 +46,7 @@ fetchData();
               name={item.title}
               description={item.description}
               price={item.price}
+              image={item.image}
             />
           </div>
         )}

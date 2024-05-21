@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
-import { Link , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,11 +12,11 @@ import { setToken } from "../../store/Slices/authSlice";
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {token,userData} = useSelector((state)=> state.auth)
+  const { token, userData } = useSelector((state) => state.auth)
 
-  if(userData==null && token!=null){
+  if (userData == null && token != null) {
     console.log(userData)
-    navigate('/logout')    
+    navigate('/logout')
   }
   // console.log(userData)
 
@@ -31,16 +31,14 @@ export default function Navbar() {
         <div className=" sm:hidden">
           <button onClick={navSet}>
             <div
-              className={` barIcon text-4xl p-4 sm:hidden ${
-                navNutton ? "flex" : "hidden p-0"
-              }`}
+              className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "flex" : "hidden p-0"
+                }`}
             >
               <FaBars />
             </div>
             <div
-              className={` barIcon text-4xl p-4 sm:hidden ${
-                navNutton ? "hidden" : "flex z-50"
-              }`}
+              className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "hidden" : "flex z-50"
+                }`}
             >
               <FaArrowLeft />
             </div>
@@ -50,9 +48,8 @@ export default function Navbar() {
         {/* lower to sm screen  */}
         <div id="LowerMain" className="sm:hidden ">
           <div
-            className={` z-10 navItems  flex-col absolute text-xl pt-4 pb-[100px]  text-start h-[100vh] w-[85vw]  px-2 py-1 text-white ${
-              navNutton ? "hidden" : "top-15 pt-0 flex "
-            } `}
+            className={` z-10 navItems  flex-col absolute text-xl pt-4 pb-[100px]  text-start h-[100vh] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
+              } `}
             style={{
               backgroundColor: "rgb(50,51,52)",
               opacity: "0.97",
@@ -88,7 +85,7 @@ export default function Navbar() {
         <div
           className="navItems hidden sm:flex h-12 w-full justify-start text-white"
           style={{ backgroundColor: "rgb(50,51,52)" }}
-          >
+        >
           <div className="flex flex-nowrap text-nowrap ">
             <Link
               to="/"
@@ -124,17 +121,22 @@ export default function Navbar() {
             <Button to={"/signup"}>Sign Up</Button>
 
             <Button to={"/login"}>Login</Button>
-            
+
           </div>}
-          {token !== null && 
-            <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
-              <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
-                Hi, {userData.name}
-              </h1>
+          {token !== null &&
+              <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
+            <div >
+
+                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
+                  Hi, {userData.name}
+                </h1>
+              </div>
+              <div> <a>Profile</a></div>
+
               <Button to={"/logout"}>Logout</Button>
             </div>
           }
-        
+
         </div>
       </div>
     </>
