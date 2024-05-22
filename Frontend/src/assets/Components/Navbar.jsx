@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
@@ -21,6 +22,10 @@ export default function Navbar() {
   // console.log(userData)
 
   const [navNutton, setNavButton] = useState(true);
+  const [profileHover, setProfileHover] = useState(false);
+  const profileExpand = () => {
+    setProfileHover((profileHover) => !profileHover);
+  };
   const navSet = () => {
     setNavButton((navNutton) => !navNutton);
   };
@@ -124,14 +129,27 @@ export default function Navbar() {
 
           </div>}
           {token !== null &&
-              <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
-            <div >
+            <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
+              <div >
 
                 <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
                   Hi, {userData.name}
                 </h1>
               </div>
-              <div> <a>Profile</a></div>
+              <button onClick={profileExpand}>
+                <a className="text-xl" > 
+                < FaUser />
+                </a>
+              </button>
+                <div className={`absolute top-12 right-12 bg-white text-black text-md   rounded-md  border-[0.5px] border-blue-950  ${profileHover? "hidden" :"flex"}`}>
+                  <ul >
+                    <li className="border-b-slate-800 border-[0.5px] rounded-t-md px-2 ">Profile</li>
+                    <li className="border-b-slate-800 border-[0.5px] px-2">Update Profile</li>
+                    <li className="border-b-slate-800 border-[0.5px] px-2">My Courses</li>
+                    <li className="border-b-slate-800 border-[0.5px] px-2">New Courses </li>
+                    <li className="border-b-slate-800 border-[0.5px] px-2">Logout</li>
+                  </ul>
+                </div>
 
               <Button to={"/logout"}>Logout</Button>
             </div>
