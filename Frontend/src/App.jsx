@@ -7,6 +7,8 @@ import Signup from './assets/Components/Signup'
 import Logout from './assets/Components/Logout'
 import AddCourse from './assets/Components/AddCourse'
 import ResetPassword from './assets/Components/ResetPassword'
+import Profile from './assets/Components/Profile'
+import UpdateProfile from './assets/Components/UpdateProfile'
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
       <Navbar />
       
       <Routes >
+        <Route path='/profile' element={ <Profile /> }/>
+        <Route path='/updateProfile' element={ <UpdateProfile /> }/>
+
         <Route path='/signup' element={ <Signup /> }/>
         <Route path='/login' element={ <Login /> }/>
         <Route path='/logout' element={ <Logout /> }/>

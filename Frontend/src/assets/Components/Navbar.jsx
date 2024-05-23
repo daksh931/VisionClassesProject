@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { LuLogOut } from "react-icons/lu";
 
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setToken } from "../../store/Slices/authSlice";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -21,14 +21,17 @@ export default function Navbar() {
   }
   // console.log(userData)
 
-  const [navNutton, setNavButton] = useState(true);
-  const [profileHover, setProfileHover] = useState(false);
+  const [profileHover, setProfileHover] = useState(true);
   const profileExpand = () => {
     setProfileHover((profileHover) => !profileHover);
   };
+  
+  const [navNutton, setNavButton] = useState(true);
   const navSet = () => {
     setNavButton((navNutton) => !navNutton);
   };
+
+
 
   return (
     <>
@@ -88,36 +91,35 @@ export default function Navbar() {
 
         {/* from small to large screen   */}
         <div
-          className="navItems hidden sm:flex h-12 w-full justify-start text-white"
+          className="navItems hidden sm:flex h-12 w-full justify-start text-white z-10" 
           style={{ backgroundColor: "rgb(50,51,52)" }}
         >
           <div className="flex flex-nowrap text-nowrap ">
             <Link
               to="/"
-              className="pr-5 pt-2 py-1 pl-3 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl"
-            >
-              {" "}
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               Dashboard
             </Link>
-            <Link className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
-              {" "}
+
+            <Link className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
               Our Speciality
             </Link>
+
             <Link
               to="/courses"
-              className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl"
-            >
-              {" "}
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">              
               Courses
             </Link>
-            <Link className="pr-5 pt-2 py-1 pl-2 cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
-              {" "}
+
+            <Link className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">  
               About Us
             </Link>
-            <Link className="pr-5 pt-2 py-1 pl-2 cursor-pointer font- text-center semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
-              {" "}
+
+            <Link className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">  
               Contact Us
             </Link>
+
+           
           </div>
 
           {/* Sign up login buttons right side Nav */}
@@ -132,7 +134,7 @@ export default function Navbar() {
             <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
               <div >
 
-                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font- text-center semibold hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
+                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
                   Hi, {userData.name}
                 </h1>
               </div>
@@ -141,17 +143,17 @@ export default function Navbar() {
                 < FaUser />
                 </a>
               </button>
-                <div className={`absolute top-12 right-12 bg-white text-black text-md   rounded-md  border-[0.5px] border-blue-950  ${profileHover? "hidden" :"flex"}`}>
+                <div className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover? "hidden" :"flex"}`}>
                   <ul >
-                    <li className="border-b-slate-800 border-[0.5px] rounded-t-md px-2 ">Profile</li>
-                    <li className="border-b-slate-800 border-[0.5px] px-2">Update Profile</li>
-                    <li className="border-b-slate-800 border-[0.5px] px-2">My Courses</li>
-                    <li className="border-b-slate-800 border-[0.5px] px-2">New Courses </li>
-                    <li className="border-b-slate-800 border-[0.5px] px-2">Logout</li>
+                  <Link  to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">  Profile </li> </Link>
+                  <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Update Profile</li> </Link>
+                    <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">My Courses</li>
+                    <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">New Courses </li>
+                    <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Logout</li>
                   </ul>
                 </div>
 
-              <Button to={"/logout"}>Logout</Button>
+              <Link className="text-2xl px-4" to="/logout"> <LuLogOut /></Link>
             </div>
           }
 

@@ -60,6 +60,8 @@ export const login = catchAsyncError( async(req,res,next)=>{
     sendToken(user,200 , res, "user loggedin Successfully!");
 })
 
+
+//logout controller
 export const logout = catchAsyncError(async (req,res,next)=>{
     res.status(201).cookie("token",null,{
         httpOnly: true,
@@ -121,10 +123,10 @@ export const resetPassword = catchAsyncError(async (req,res,next)=> {
     const token = req.params.token
     // console.log(token)
 
-    const resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(token)
-    .digest("hex")
+    const resetPasswordToken = crypto 
+    .createHash("sha256")             
+    .update(token)                    
+    .digest("hex")                     
 
     const user = await User.findOne({
         resetPasswordToken:resetPasswordToken,
