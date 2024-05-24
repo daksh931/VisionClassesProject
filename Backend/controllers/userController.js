@@ -195,18 +195,35 @@ export const userUpdateDetails = catchAsyncError(async(req,res,next)=>{
     
     const updatedProfile = {
         name:req.body.name,
-        email:req.body.email
+        email:req.body.email,
+        phone:req.body.phone,
     };
     
-    const user = await User.findByIdAndUpdate(req.user.id, updatedProfile, {
-        new: true,
-        runValidators : true,
-        useFindAndModify: false,
-    });
+    try {
+        const user0 = await User.findById(req.user.id).select("+password");
+        const isPasswordMatched = await user0.comparePassword(req.body.password);
+        
+        if(!isPasswordMatched){
+            return next(new ErrorHandler("Password is Incorrect", 401));
+        }
+    
+        const user = await User.findByIdAndUpdate(req.user.id, updatedProfile, {
+            new: true,
+            runValidators : true,
+            useFindAndModify: false,
+        });
+    
+        res.status(200).json({
+            success:true,
+            user,
+            message: `Details updated Successfully`,
+        });
+        
+    } 
+    catch (error) {
+        return next(new ErrorHandler(error.message, 500))
+    }
 
-    res.status(200).json({
-        success:true,
-    });
 });
 
 // add such api routes Admin can remove,add,update normal user details... 

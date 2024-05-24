@@ -138,12 +138,12 @@ export default function Navbar() {
                   Hi, {userData.name}
                 </h1>
               </div>
-              <button onClick={profileExpand}>
+              <button className="p-2 h-full" onMouseEnter={profileExpand} onMouseLeave={profileExpand}>
                 <a className="text-xl" > 
                 < FaUser />
                 </a>
               </button>
-                <div className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover? "hidden" :"flex"}`}>
+                <div onMouseLeave={profileExpand} className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover? "hidden" :"flex"}`}>
                   <ul >
                   <Link  to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">  Profile </li> </Link>
                   <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Update Profile</li> </Link>
