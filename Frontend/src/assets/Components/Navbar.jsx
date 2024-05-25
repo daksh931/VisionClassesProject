@@ -101,8 +101,8 @@ export default function Navbar() {
               Dashboard
             </Link>
 
-            <Link className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
-              Our Speciality
+            <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
+              Add Course
             </Link>
 
             <Link
