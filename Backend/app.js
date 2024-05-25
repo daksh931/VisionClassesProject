@@ -26,7 +26,9 @@ app.use(express.json()); // parse json neglect other data...
 // app.use(express.urlencoded({extended: true})); // string conversion to json format
 app.use(express.urlencoded({extended: false}))
 
-
+app.get("/", (req,res)=>{
+    res.status(200).send("Hello from Server");
+})
 app.use('/api/v1/user', userRouter);
 
 app.use('/api/v1/course', courseRouter);
