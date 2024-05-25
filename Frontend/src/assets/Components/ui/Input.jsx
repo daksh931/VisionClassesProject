@@ -9,8 +9,7 @@ export default function Input(props) {
         <label
           htmlFor={`${props.placeholder} `}
           className={"block text-md font-medium text-gray-900 dark:text-white mb-[1.5px] pl-[1.8px]"}
-          // className={ textColorr ? `${props.labelClass}` : "text-red-500"} 
-          // className={ textColorr ? `${props.labelClass}` : "text-red-500"}
+       
         >
           {props.placeholder}
       

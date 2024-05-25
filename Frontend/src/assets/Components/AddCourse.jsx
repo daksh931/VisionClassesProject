@@ -8,8 +8,6 @@ import { setCourseData } from '../../store/Slices/addCourse'
 import axios from 'axios'
 import { FaRegFileImage } from "react-icons/fa";
 
-
-
 const AddCourse = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,7 +21,7 @@ const AddCourse = () => {
   const [uploadFileName, setUploadFileName] = useState("Upload")
 
   const { addCourse } = useSelector((state) => state.addCourse);
-
+  // console.log(import.meta.env.VITE_BACKEND_URL)
   const handleAddCourse = async (e) => {
     e.preventDefault();
     // console.log(title);
@@ -38,7 +36,7 @@ const AddCourse = () => {
     }
     
     console.log(cData)
-    const response = await axios.post('http://localhost:4000/api/v1/course/postCourse',
+    const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/v1/course/postCourse',
       // JSON.stringify(cData),
       cData,
       {
@@ -48,7 +46,8 @@ const AddCourse = () => {
         withCredentials: true,
       }).then((res)=>{
         // dispatch(setCourseData(res.data.))
-        console.log("worked",res)
+        // console.log("worked",res)
+        alert("Course Added Successfully!")
       })
   }
 
@@ -62,7 +61,7 @@ const AddCourse = () => {
    
           <div id="maindiv" className='py-7 mt-5 px-2 w-80 shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200 border-[3px] border-zinc-100 rounded-md flex flex-col self-center text-white'>
             <a className='text-zinc-900 text-2xl text-center font-bold'>Add New Course</a>
-            <Input placeholder={"Course Title"} labelClass={"text-white"} onChange={(e) => setTitle(e.target.value)} />
+            <Input placeholder={"Course Title"}  onChange={(e) => setTitle(e.target.value)} />
             <Input placeholder={"Course Description"} onChange={(e) => setDescription(e.target.value)} />
             <Input placeholder={"Course price"} onChange={(e) => setPrice(e.target.value)} />
             <Input placeholder={" Mode of course"} onChange={(e) => setMode(e.target.value)} />

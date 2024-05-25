@@ -33,7 +33,7 @@ export default function UpdateProfile() {
             password: password,
         }
 
-        const response = await axios.put("http://localhost:4000/api/v1/user/updateProfile",
+        const response = await axios.put(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/updateProfile",
             JSON.stringify(updateData),
             {
                 headers: {

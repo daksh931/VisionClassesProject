@@ -25,7 +25,7 @@ export default function Login() {
       password:password,
     }
 
-    const response = await axios.post("http://localhost:4000/api/v1/user/login",
+    const response = await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/login",
     JSON.stringify(logindata),
     {
       headers:{

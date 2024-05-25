@@ -8,7 +8,7 @@ const Logout = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleLogout = async (e) =>{
-        const response = await axios.get("http://localhost:4000/api/v1/user/logout",
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/logout",
         {
             headers: {
               "Content-Type" : "application/json",
