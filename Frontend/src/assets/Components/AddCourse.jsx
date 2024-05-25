@@ -35,7 +35,7 @@ const AddCourse = () => {
       image: image
     }
     
-    console.log(cData)
+    // console.log(cData)
     const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/v1/course/postCourse',
       // JSON.stringify(cData),
       cData,

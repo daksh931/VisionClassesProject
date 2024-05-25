@@ -9,7 +9,7 @@ const [courseData, setCourseData]= useState([]);
 useEffect(()=>{
    function fetchData(){
      axios.get(import.meta.env.VITE_BACKEND_URL+'/api/v1/course/getcourses').then((response)=>{
-              console.log(response.data)
+              // console.log(response.data)
               setCourseData(response.data.courses)
             });
 
