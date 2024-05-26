@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + uniqueSuffix)
     }
   })
-  console.log("multer worked")
+  // console.log("multer worked")
 export const upload = multer({ 
     storage:storage,  
 })

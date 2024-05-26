@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { setToken,setUserData } from '../../store/Slices/authSlice';
 
-const Logout = () => {
+export default function Logout() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,5 +29,3 @@ const Logout = () => {
     }
     handleLogout();
 }
-
-export default Logout

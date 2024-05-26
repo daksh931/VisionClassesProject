@@ -77,14 +77,14 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
     // image handle on cloudinary
     const imagePath= req.file.path;
     const uploadedImage = await uploadOnCloudinary(imagePath);
-
+    // console.log(uploadedImage)
 
     const course = await Course.create({
         title,
         description,
         price,
         mode,
-        image:uploadedImage.url,
+        image:uploadedImage.secure_url,
         postedBy,
     });
 
