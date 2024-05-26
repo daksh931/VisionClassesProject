@@ -28,4 +28,7 @@ export default function Logout() {
         return navigate('/')
     }
     handleLogout();
+    
+  return (
+    <></>)
 }
