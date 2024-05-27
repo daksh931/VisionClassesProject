@@ -4,26 +4,26 @@ export default function Course(props) {
   return (
     <>
 
-      <div className="max-w-72 p-2 flex flex-col justify-between shadow-xl  shadow-slate-400 hover:shadow-slate-600 rounded-md border-4 border-white min-h-72 bg-slate-200">
-      <div className="mb-1">
-        <img
-          className=" pb-2 rounded-md object-cover h-56 w-96" 
-          src={props.image}
-          alt="Course Image "
+      <div className="w-[85vw] max-w-96 sm:max-w-72 p-2 flex flex-col justify-between shadow-xl  shadow-slate-400 hover:shadow-slate-600 rounded-md border-4 border-white min-h-72 bg-slate-200">
+        <div className="mb-1">
+          <img
+            className=" pb-2 rounded-md object-cover h-56 w-96"
+            src={props.image}
+            alt="Course Image "
           ></img>
 
-        <div className="flex flex-col justify-between min-h-24">
+          <div className="flex flex-col justify-between min-h-24">
 
-        <h2 className="courseName/Title text-xl py-1 text-slate-600 font-semibold leading-none">
-          {props.name}
-        </h2>
-        <p className="description leading-none py-1	text-slate-700">
-          {props.description}
-        </p>
-        <p className="description leading-none py-1	text-slate-700">
-          {`Price - ${props.price} ⟨₹⟩`}
-        </p>
-          </div>    
+            <h2 className="courseName/Title text-xl py-1 text-slate-600 font-semibold leading-none">
+              {props.name}
+            </h2>
+            <p className="description leading-none py-1	text-slate-700">
+              {props.description}
+            </p>
+            <p className="description leading-none py-1	text-slate-700">
+              {`Price - ${props.price} ⟨₹⟩`}
+            </p>
+          </div>
         </div>
 
         <div className="flex w-full right-0 bottom-0 justify-around	mt-2 p-2 	">

@@ -36,7 +36,7 @@ export default function Navbar() {
   return (
     <>
       <div id="mainNav" className=" p-0 m-0 top-0">
-        <div className=" sm:hidden">
+        <div className="bg-zinc-800 text-white sm:hidden">
           <button onClick={navSet}>
             <div
               className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "flex" : "hidden p-0"
@@ -55,8 +55,8 @@ export default function Navbar() {
 
         {/* lower to sm screen  */}
         <div id="LowerMain" className="sm:hidden ">
-          <div
-            className={` z-10 navItems  flex-col absolute text-xl pt-4 pb-[100px]  text-start h-[100vh] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
+          <div onClick={navSet}
+            className={` z-10 navItems flex flex-col space-y-12 absolute text-3xl pt-4 pb-[100px]  text-start h-[calc(100vh-138px)] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
               } `}
             style={{
               backgroundColor: "rgb(50,51,52)",
@@ -67,23 +67,18 @@ export default function Navbar() {
               to="/"
               className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white"
             >
-              {" "}
               Dashboard
             </Link>
-            <Link className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
-              {" "}
-              Our Speciality
+            <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+              Add Course
+            </Link>
+            <Link to="/courses" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+              Courses
             </Link>
             <Link className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
-              {" "}
-              Enterprise
-            </Link>
-            <Link className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
-              {" "}
               About Us
             </Link>
             <Link className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
-              {" "}
               Contact Us
             </Link>
           </div>
