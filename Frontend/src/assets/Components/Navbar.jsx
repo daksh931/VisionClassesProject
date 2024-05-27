@@ -25,7 +25,7 @@ export default function Navbar() {
   const profileExpand = () => {
     setProfileHover((profileHover) => !profileHover);
   };
-  
+
   const [navNutton, setNavButton] = useState(true);
   const navSet = () => {
     setNavButton((navNutton) => !navNutton);
@@ -35,22 +35,38 @@ export default function Navbar() {
 
   return (
     <>
-      <div id="mainNav" className=" p-0 m-0 top-0">
-        <div className="bg-zinc-800 text-white sm:hidden">
-          <button onClick={navSet}>
-            <div
-              className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "flex" : "hidden p-0"
-                }`}
-            >
-              <FaBars />
-            </div>
-            <div
-              className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "hidden" : "flex z-50"
-                }`}
-            >
-              <FaArrowLeft />
-            </div>
-          </button>
+      <div id="mainNav" className=" p-0 m-0 top-0 w-full" >
+        <div className="bg-zinc-800 text-white flex justify-between w-full sm:hidden">
+          <div>
+            <button onClick={navSet}>
+              <div
+                className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "flex" : "hidden p-0"
+                  }`}
+              >
+                <FaBars />
+              </div>
+              <div
+                className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "hidden" : "flex z-50"
+                  }`}
+              >
+                <FaArrowLeft />
+              </div>
+            </button>
+
+          </div>
+
+          {token == null && <div className="text-center w-[100vw] flex items-center justify-end">
+           
+           <Button to={"/signup"}>Sign Up</Button>
+
+            <Button to={"/login"}>Login</Button>
+
+          </div>}
+          {token != null && <div className="flex items-center">
+            
+            <Link className="text-4xl px-4" to="/logout"> <LuLogOut /></Link>
+
+          </div>}
         </div>
 
         {/* lower to sm screen  */}
@@ -86,7 +102,7 @@ export default function Navbar() {
 
         {/* from small to large screen   */}
         <div
-          className="navItems hidden sm:flex h-12 w-full justify-start text-white z-10" 
+          className="navItems hidden sm:flex h-12 w-full justify-start text-white z-10"
           style={{ backgroundColor: "rgb(50,51,52)" }}
         >
           <div className="flex flex-nowrap text-nowrap ">
@@ -102,19 +118,19 @@ export default function Navbar() {
 
             <Link
               to="/courses"
-              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">              
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               Courses
             </Link>
 
-            <Link className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">  
+            <Link className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               About Us
             </Link>
 
-            <Link className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">  
+            <Link className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               Contact Us
             </Link>
 
-           
+
           </div>
 
           {/* Sign up login buttons right side Nav */}
@@ -134,19 +150,19 @@ export default function Navbar() {
                 </h1>
               </div>
               <button className="p-2 h-full" onMouseEnter={profileExpand} onMouseLeave={profileExpand}>
-                <a className="text-xl" > 
-                < FaUser />
+                <a className="text-xl" >
+                  < FaUser />
                 </a>
               </button>
-                <div onMouseLeave={profileExpand} className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover? "hidden" :"flex"}`}>
-                  <ul >
-                  <Link  to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">  Profile </li> </Link>
+              <div onMouseLeave={profileExpand} className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover ? "hidden" : "flex"}`}>
+                <ul >
+                  <Link to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">  Profile </li> </Link>
                   <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Update Profile</li> </Link>
-                    <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">My Courses</li>
-                    <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">New Courses </li>
-                    <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Logout</li>
-                  </ul>
-                </div>
+                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">My Courses</li>
+                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">New Courses </li>
+                  <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Logout</li>
+                </ul>
+              </div>
 
               <Link className="text-2xl px-4" to="/logout"> <LuLogOut /></Link>
             </div>
