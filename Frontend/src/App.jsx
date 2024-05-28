@@ -17,10 +17,10 @@ function App() {
       <Navbar />
       
       <Routes >
-        <Route path='/profile' element={ <Profile /> }/>
-        <Route path='/updateProfile' element={ <UpdateProfile /> }/>
+        <Route path='/profile' exact element={ <Profile /> }/>
+        <Route path='/updateProfile' exact element={ <UpdateProfile /> }/>
 
-        <Route path='/signup' element={ <Signup /> }/>
+        <Route path='/signup' exact element={ <Signup /> }/>
         <Route path='/login' element={ <Login /> }/>
         <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
