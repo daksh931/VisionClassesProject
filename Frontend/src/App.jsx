@@ -6,14 +6,13 @@ import Courses from './assets/Components/Courses'
 import Signup from './assets/Components/Signup'
 import Logout from './assets/Components/Logout'
 import AddCourse from './assets/Components/AddCourse'
-import ResetPassword from './assets/Components/ResetPassword'
-import Profile from './assets/Components/Profile'
-import UpdateProfile from './assets/Components/UpdateProfile'
+import ResetPassword from './assets/Components/Profile/ResetPassword'
+import Profile from './assets/Components/Profile/Profile'
+import UpdateProfile from './assets/Components/Profile/UpdateProfile'
+import ForgotPassword from './assets/Components/Profile/ForgotPassword'
 
 function App() {
-
   return (
-
     <div>
       <Navbar />
       
@@ -26,6 +25,7 @@ function App() {
         <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
         <Route path='/addCourse' element={ <AddCourse /> }/>
+        <Route path='/forgotpassword' element={ <ForgotPassword /> }/>
         <Route path='/password/reset/:userid/:token' element={ <ResetPassword /> }/>
       </Routes>
     </div>

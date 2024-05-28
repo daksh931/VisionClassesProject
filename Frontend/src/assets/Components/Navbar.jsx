@@ -85,9 +85,18 @@ export default function Navbar() {
             >
               Dashboard
             </Link>
+            
+            { ( token==undefined || (token!==null && userData.role =='user') ) && 
+            <Link to="/buyCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+              Buy Course
+            </Link>
+            }
+
+            {token !== null && userData.role =='admin' && 
             <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
               Add Course
             </Link>
+            }
             <Link to="/courses" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
               Courses
             </Link>
@@ -112,9 +121,16 @@ export default function Navbar() {
               Dashboard
             </Link>
 
+            { ( token==undefined || (token!==null && userData.role =='user') ) && 
+            <Link to="/buyCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
+              Buy Course
+            </Link>
+            }
+            {token !== null && userData.role =='admin' && 
             <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
               Add Course
             </Link>
+            }
 
             <Link
               to="/courses"

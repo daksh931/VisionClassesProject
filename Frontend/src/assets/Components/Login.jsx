@@ -1,11 +1,10 @@
 import Input from "./ui/Input";
 import Button from "./ui/Button";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { setToken, setUserData } from "../../store/Slices/authSlice";
-
 
 
 export default function Login() {
@@ -64,12 +63,12 @@ export default function Login() {
           <Input  type={'password'} placeholder={"Password"} onChange={(e)=> setPassword(e.target.value)}  />
 
           <div className="flex justify-center w-full">
-            <button type="submit"  className="align-middle min-h-8 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
+            <button type="submit"  className="align-middle min-h-8 mt-2 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
                Login </button>
             {/* //custom Button component not working */}
             {/* <button type="submit" className={"px-5 mt-5"} > Login </button> */}
-
           </div>
+            <div className="flex justify-center text-md hover:text-white mt-2"> <Link to={'/forgotpassword'}> Forgot Password?</Link> </div>
         </div>
       </div>
       </form>

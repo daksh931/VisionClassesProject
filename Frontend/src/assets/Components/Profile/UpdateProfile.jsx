@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Input from './ui/Input'
+import Input from '../ui/Input'
 import axios from 'axios';
 import { useSelector, useDispatch } from "react-redux";
-import { setToken, setUserData } from "../../store/Slices/authSlice";
+import { setToken, setUserData } from "../../../store/Slices/authSlice";
 
 
 export default function UpdateProfile() {

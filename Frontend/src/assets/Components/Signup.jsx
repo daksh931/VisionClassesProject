@@ -72,10 +72,10 @@ export default function Signup() {
               Signup Here
             </h2>
 
-            <Input placeholder={"Name"} onChange={(e) => setName(e.target.value)} classname="mt-5" />
-            <Input placeholder={"Email"} onChange={(e) => setEmail(e.target.value)} classname="mt-5" />
-            <Input placeholder={"Phone Number"} onChange={(e) => setPhoneNumber(e.target.value)} classname="mt-5" />
-            <Input type={'password'} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} classname="mt-5" />
+            <Input placeholder={"Name"} onChange={(e) => setName(e.target.value)} />
+            <Input placeholder={"Email"} onChange={(e) => setEmail(e.target.value)} />
+            <Input placeholder={"Phone Number"} onChange={(e) => setPhoneNumber(e.target.value)} />
+            <Input type={'password'} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} />
 
             {/* Radio Btns */}
             <div className="px-2 py-1 flex justify-evenly">
