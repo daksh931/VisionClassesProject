@@ -15,7 +15,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      
+      {/* by writing 'exact' prop in <Route> */}
       <Routes >
         <Route path='/profile' exact element={ <Profile /> }/>
         <Route path='/updateProfile' exact element={ <UpdateProfile /> }/>
