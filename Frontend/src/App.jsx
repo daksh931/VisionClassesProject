@@ -16,11 +16,11 @@ function App() {
     <div>
       <Navbar />
       {/* by writing 'exact' prop in <Route> */}
-      <Routes >
-        <Route path='/profile' exact element={ <Profile /> }/>
-        <Route path='/updateProfile' exact element={ <UpdateProfile /> }/>
+      <Routes>
+        <Route path='/profile'  element={ <Profile /> }/>
+        <Route path='/updateProfile'  element={ <UpdateProfile /> }/>
 
-        <Route path='/signup' exact element={ <Signup /> }/>
+        <Route path='/signup'  element={ <Signup /> }/>
         <Route path='/login' element={ <Login /> }/>
         <Route path='/logout' element={ <Logout /> }/>
         <Route path='/' element={ <Courses /> }/>
