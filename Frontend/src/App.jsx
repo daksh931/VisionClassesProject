@@ -10,6 +10,7 @@ import ResetPassword from './assets/Components/Profile/ResetPassword'
 import Profile from './assets/Components/Profile/Profile'
 import UpdateProfile from './assets/Components/Profile/UpdateProfile'
 import ForgotPassword from './assets/Components/Profile/ForgotPassword'
+import Cart from './assets/Components/Cart'
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path='/addCourse' element={ <AddCourse /> }/>
         <Route path='/forgotpassword' element={ <ForgotPassword /> }/>
         <Route path='/password/reset/:userid/:token' element={ <ResetPassword /> }/>
+        
+        <Route path='/cart' element={ <Cart /> }/>
       </Routes>
     </div>
   )

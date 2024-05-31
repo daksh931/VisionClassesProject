@@ -4,15 +4,22 @@ import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
+import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./ui/Button";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  
+  // selecting Total Quantity, token from cartSlice
+  const {totalQuantity} = useSelector(state => state.cart)
+  // console.log(useSelector(state => state.cart))
+  // console.log(useSelector(state => state.auth))
+
+  // selecting userData, token from authSlice
   const { token, userData } = useSelector((state) => state.auth)
 
   if (userData == null && token != null) {
@@ -165,7 +172,7 @@ export default function Navbar() {
                   Hi, {userData.name}
                 </h1>
               </div>
-              <button className="p-2 h-full" onMouseEnter={profileExpand} onMouseLeave={profileExpand}>
+              <button className="p-2 h-full hover:text-zinc-400" onMouseEnter={profileExpand} onMouseLeave={profileExpand}>
                 <a className="text-xl" >
                   < FaUser />
                 </a>
@@ -179,8 +186,8 @@ export default function Navbar() {
                   <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Logout</li>
                 </ul>
               </div>
-
-              <Link className="text-2xl px-4" to="/logout"> <LuLogOut /></Link>
+              <Link id='cart' className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
+              <Link className="text-2xl px-4 hover:text-zinc-400" to="/logout"> <LuLogOut /></Link>
             </div>
           }
 

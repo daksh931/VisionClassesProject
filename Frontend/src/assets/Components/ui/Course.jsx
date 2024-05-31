@@ -1,9 +1,23 @@
 import Button from "./Button";
+import { useDispatch } from "react-redux";
+import cartSlice from "../../../store/Slices/cartSlice";
+import { cartActions } from "../../../store/Slices/cartSlice";
 
 export default function Course(props) {
+
+  // console.log(props)
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () =>{
+    const{id, name, description, image, price}= props;
+    // console.log(id, name, description, image, price)
+    // const item={ id, name, description, image, price}
+  
+    dispatch(cartActions.addItemToCart({id, name, description, image, price}));
+  }
+
   return (
     <>
-
       <div className="w-[85vw] max-w-96 sm:max-w-72 p-2 flex flex-col justify-between shadow-xl  shadow-slate-400 hover:shadow-slate-600 rounded-md border-4 border-white min-h-72 bg-slate-200">
         <div className="mb-1">
           <img
@@ -26,9 +40,12 @@ export default function Course(props) {
           </div>
         </div>
 
-        <div className="flex w-full right-0 bottom-0 justify-around	mt-2 p-2 	">
-          <Button style={" mx-2 bg-black "}> Add to Cart</Button>
-          <Button> Buy Now</Button>
+        <div className="flex w-full right-0 bottom-0 justify-around	mt-2 p-2 ">
+        <button onClick={addToCartHandler} className="align-middle min-h-8 mt-2 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
+        Add to Cart </button> 
+
+        <button type="submit"  className="align-middle min-h-8 mt-2 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
+        Buy Now </button> 
         </div>
       </div>
     </>

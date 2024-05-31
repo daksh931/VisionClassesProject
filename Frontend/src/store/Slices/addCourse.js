@@ -5,10 +5,7 @@ const initialState = {
     "description": undefined,
     "price" : undefined,
     "mode": undefined,
-    "image":{
-        "public_id":"sample_url_id",
-        "url":"sample_url"
-    }
+    "image":undefined,
 }
 }
 

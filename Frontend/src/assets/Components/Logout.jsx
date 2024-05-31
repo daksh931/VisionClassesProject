@@ -11,17 +11,16 @@ export default function Logout() {
         const response = await axios.get(import.meta.env.VITE_BACKEND_URL+"/api/v1/user/logout",
         {
             headers: {
-              "Content-Type" : "application/json",
-              
+              "Content-Type" : "application/json" 
             },
             withCredentials: true, // help to set cookies in browser from backend server
           }
         ).then((res)=>{console.log("sucess logout",res.data)
             dispatch(setToken(null))
-            localStorage.setItem("token",null)
+            localStorage.removeItem("token")
 
             dispatch(setUserData(null))
-            localStorage.setItem("user",null)
+            localStorage.removeItem("user")
             })
         
         // console.log(response)
