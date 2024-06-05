@@ -31,7 +31,7 @@ export default function CItem(props) {
     return (
         <>
 
-            <div className='flex w-full my-5 px-5 justify-between '>
+            <div className='flex flex-col sm:flex-row w-full my-5 px-5 justify-between '>
 
                 <div className='flex'>
                     <div id='Course photo' className=' mr-2'>
@@ -48,9 +48,9 @@ export default function CItem(props) {
                     </div>
                 </div>
 
-                <div className='flex flex-col '>
+                <div className='flex flex-col items-end'>
 
-                    <div id='buttoms' className='flex'>
+                    <div id='buttons' className='flex'>
                         <button onClick={removeCartHandler} className="align-middle  font-normal text-center uppercase  text-xl px-3 py-0 rounded-md bg-zinc-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.95] border-[1px]
         border-white hover:border-zinc-900 text-nowrap">
                             - </button>

@@ -15,15 +15,15 @@ export default function Cart() {
                 <div className='flex justify-center pt-16 '>
                 
                 {finalTotalPrice===0 && 
-                <div className='flex justify-center items-center border-4 border-zinc-600 hover:border-zinc-900 w-5/12 min-h-28 rounded-xl shadow-xl  shadow-zinc-400 hover:shadow-zinc-500  bg-zinc-200 '>
-                        <a className='text-center text-2xl hover:text-zinc-600 font-semibold'> Sorry, Your Cart is Empty! </a>                    
+                <div className='flex justify-center items-center border-4 border-zinc-600 hover:border-zinc-900 w-10/12 sm:w-5/12 min-h-28 rounded-xl shadow-xl  shadow-zinc-400 hover:shadow-zinc-500  bg-zinc-200 '>
+                        <a className='text-center text-2xl hover:text-zinc-600 font-semibold'> Your Cart is Empty! </a>                    
                     </div>
                     
                 }
 
                 {finalTotalPrice!==0 && 
 
-                    <div className='border-4 border-zinc-600 hover:border-zinc-900 w-5/12 min-h-28 rounded-xl shadow-xl  shadow-zinc-400 hover:shadow-zinc-500  bg-zinc-200'>
+                    <div className='border-4 border-zinc-600 hover:border-zinc-900 sm:w-5/12 min-h-28 rounded-xl shadow-xl  shadow-zinc-400 hover:shadow-zinc-500  bg-zinc-200'>
 
                         {
                             items.map((item, index) =>

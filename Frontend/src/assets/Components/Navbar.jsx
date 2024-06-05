@@ -71,12 +71,14 @@ export default function Navbar() {
           </div>}
           {token != null && <div className="flex items-center">
             
+          <Link id='cart' className="text-4xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-2xl font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
+
             <Link className="text-4xl px-4" to="/logout"> <LuLogOut /></Link>
 
           </div>}
         </div>
 
-        {/* lower to sm screen  */}
+        {/* lower to small screen  */}
         <div id="LowerMain" className="sm:hidden ">
           <div onClick={navSet}
             className={` z-10 navItems flex flex-col space-y-12 absolute text-3xl pt-4 pb-[100px]  text-start h-[calc(100vh-138px)] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
@@ -145,11 +147,11 @@ export default function Navbar() {
               Courses
             </Link>
 
-            <Link className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+            <Link to="/about" className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               About Us
             </Link>
 
-            <Link className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+            <Link to="/contact" className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">
               Contact Us
             </Link>
 
@@ -177,13 +179,16 @@ export default function Navbar() {
                   < FaUser />
                 </a>
               </button>
-              <div onMouseLeave={profileExpand} className={`absolute font-serif top-12 border-t-0 right-12 bg-zinc-200 z-20 text-black text-lg cursor-pointer border-4 border-zinc-400  rounded-b-xl ${profileHover ? "hidden" : "flex"}`}>
+          
+
+              <div onMouseLeave={profileExpand} className={`absolute font-sans top-12 border-t-0 right-12 z-20 text-black text-xl cursor-pointer  rounded-b-xl shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200 border-[3px] border-zinc-100 
+              ${profileHover ? "hidden" : "flex"}`}>
                 <ul >
-                  <Link to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">  Profile </li> </Link>
-                  <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Update Profile</li> </Link>
-                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">My Courses</li>
-                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">New Courses </li>
-                  <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200 hover:bg-zinc-600">Logout</li>
+                  <Link to="/profile"> <li className="border-b-slate-800 border-[0.5px] -mx-[0.7px] border-none hover:text-zinc-200 p-2 hover:bg-zinc-600">  Profile </li> </Link>
+                  <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-4 -mx-[0.7px] border-none hover:text-zinc-200  p-2 hover:bg-zinc-600">Update Profile</li> </Link>
+                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">My Courses</li>
+                  <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">New Courses </li>
+                  <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li>
                 </ul>
               </div>
               <Link id='cart' className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>

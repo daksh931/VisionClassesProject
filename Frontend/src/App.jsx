@@ -11,6 +11,10 @@ import Profile from './assets/Components/Profile/Profile'
 import UpdateProfile from './assets/Components/Profile/UpdateProfile'
 import ForgotPassword from './assets/Components/Profile/ForgotPassword'
 import Cart from './assets/Components/Cart'
+import Footer from './assets/Components/Footer'
+import About from './assets/Components/About'
+import ContactUs from './assets/Components/ContactUs'
+import Contact from './assets/Components/Contact'
 
 function App() {
   return (
@@ -24,13 +28,19 @@ function App() {
         <Route path='/signup'  element={ <Signup /> }/>
         <Route path='/login' element={ <Login /> }/>
         <Route path='/logout' element={ <Logout /> }/>
-        <Route path='/' element={ <Courses /> }/>
+        <Route path='/' element={ <HomePage /> }/>
+        <Route path='/courses' element={ <Courses /> }/>
         <Route path='/addCourse' element={ <AddCourse /> }/>
+        <Route path='/about' element={ <About /> }/>
+        <Route path='/contact' element={ <Contact /> }/>
+
+
         <Route path='/forgotpassword' element={ <ForgotPassword /> }/>
         <Route path='/password/reset/:userid/:token' element={ <ResetPassword /> }/>
         
         <Route path='/cart' element={ <Cart /> }/>
       </Routes>
+      <Footer />
     </div>
   )
 }
