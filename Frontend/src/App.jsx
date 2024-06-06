@@ -13,10 +13,13 @@ import ForgotPassword from './assets/Components/Profile/ForgotPassword'
 import Cart from './assets/Components/Cart'
 import Footer from './assets/Components/Footer'
 import About from './assets/Components/About'
-import ContactUs from './assets/Components/ContactUs'
 import Contact from './assets/Components/Contact'
+import Cookies from 'js-cookie';
 
 function App() {
+  const token = Cookies.get('token');
+  console.log(token)
+  
   return (
     <div>
       <Navbar />

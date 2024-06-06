@@ -36,6 +36,9 @@ const AddCourse = () => {
     }
     
     // console.log(cData)
+    try {
+      
+    
     const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/v1/course/postCourse',
       // JSON.stringify(cData),
       cData,
@@ -49,6 +52,9 @@ const AddCourse = () => {
         // console.log("worked",res)
         alert("Course Added Successfully!")
       })
+    } catch (error) {
+      console.log(error.response.data.message)
+    }
   }
 
   return (
