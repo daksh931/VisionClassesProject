@@ -1,14 +1,21 @@
 import Button from "./Button";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import cartSlice from "../../../store/Slices/cartSlice";
 import { cartActions } from "../../../store/Slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Course(props) {
 
   // console.log(props)
   const dispatch = useDispatch();
 
+  const { token, userData } = useSelector((state) => state.auth)
+
+  
   const addToCartHandler = () =>{
+    if(!token || token ==null || !userData || userData ==null){
+      alert("login First")
+    }
     const{id, name, description, image, price}= props;
     // console.log(id, name, description, image, price)
     // const item={ id, name, description, image, price}
