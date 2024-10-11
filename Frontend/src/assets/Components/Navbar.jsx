@@ -189,10 +189,10 @@ export default function Navbar() {
                   <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-4 -mx-[0.7px] border-none hover:text-zinc-200  p-2 hover:bg-zinc-600">Update Profile</li> </Link>
                   <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">My Courses</li>
                   <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">New Courses </li>
-                  <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li>
+                  <Link  to="/logout"> <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li></Link>
                 </ul>
               </div>
-              <Link id='cart' className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
+              <Link id='cart'  className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
               <Link className="text-2xl px-4 hover:text-zinc-400" to="/logout"> <LuLogOut /></Link>
             </div>
           }

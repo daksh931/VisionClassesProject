@@ -37,6 +37,7 @@ export default function Login() {
       dispatch(setToken(JSON.stringify(res.data.token)))
       localStorage.setItem("token",JSON.stringify(res.data.token))
       
+      // console.log(res.data.user)
       dispatch(setUserData(res.data.user))
       localStorage.setItem("user",JSON.stringify(res.data.user))
     

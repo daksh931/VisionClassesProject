@@ -23,11 +23,18 @@ export default function Signup() {
   const handleRadioButton = (e) => {
     setRole(e);
   }
-  console.log(role)
+  // console.log(role)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, phone, password, role);
+    // console.log(name, email, phone, password, role);
+
+    if(!name || !email || !phone || !password || !role){
+      alert("Fields should not be empty")
+    }
+    if(password && password.length <8){
+      alert("Password should contain atleast 8 letters")
+    }
 
     const signupData = {
       name: name,
@@ -36,7 +43,7 @@ export default function Signup() {
       password: password,
       role: role
     }
-    console.log(signupData)
+    // console.log(signupData)
     const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/v1/user/register',
       JSON.stringify(signupData),
       {
@@ -47,14 +54,11 @@ export default function Signup() {
       }).then((res) => {
         dispatch(setToken(res.data.token))
         localStorage.setItem("token", JSON.stringify(res.data.token))
-
-
-        dispatch(setUserData({
-          name: name,
-          email: email,
-          role: role
-        }))
-        localStorage.setItem("user", JSON.stringify(userData))
+        
+        // console.log(res.data)
+        
+        dispatch(setUserData(res.data.user))
+       localStorage.setItem("user",JSON.stringify(res.data.user))
       })
 
 
@@ -74,7 +78,7 @@ export default function Signup() {
 
             <Input placeholder={"Name"} onChange={(e) => setName(e.target.value)} />
             <Input placeholder={"Email"} onChange={(e) => setEmail(e.target.value)} />
-            <Input placeholder={"Phone Number"} onChange={(e) => setPhoneNumber(e.target.value)} />
+            <Input type={'number'} placeholder={"Phone Number"} onChange={(e) => setPhoneNumber(e.target.value)} />
             <Input type={'password'} placeholder={"Password"} onChange={(e) => setPassword(e.target.value)} />
 
             {/* Radio Btns */}

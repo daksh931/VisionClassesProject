@@ -11,14 +11,18 @@ export default function Profile() {
         purchasedCourse = userData.purchasedCourses ;
     }
     return (
-        
+        <div className='min-h-[90vh]'>
+
         <div className='flex justify-center'>
-            <div className=' mt-12 border-8 flex flex-col space-y-6 border-zinc-200 py-2 font-medium text-xl bg-zinc-300 rounded-md px-5 '>
-            <a > Name - {userData.name} </a>
-            <a> Email - {userData.email}</a> 
-            <a> Phone number - {userData.phone}</a> 
-            <a> Role - {userData.role}</a> 
-            <a> Purachased Courses - {purchasedCourse}</a> 
+            <div className=' mt-12 shadow-zinc-400 shadow-lg hover:shadow-zinc-400  hover:shadow-xl sm:w-2/6 flex flex-col space-y-6 border-zinc-700 py-2  
+            font-medium text-lg bg-zinc-300 rounded-md p-5 px-5 '>
+            <h1 className='text-2xl text-center'> Personal Information </h1>
+            <a >Your Name - {userData.name} </a>
+            <a>Your Email - {userData.email}</a> 
+            <a>Your Phone number - {userData.phone}</a> 
+            <a>Your Role - {userData.role}</a> 
+            <a>Your Purachased Courses - {purchasedCourse}</a> 
+        </div>
         </div>
         </div>
     )
