@@ -17,18 +17,18 @@ export default function HomePage() {
             </div>
           </h1>
 
-          <div className="flex flex-col sm:flex-row  text-md">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 text-md px-3">
 
-            <div className=" text-zinc-700 font-normal mx-10 px-5 my-4 sm:my-12 bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
+            <div className=" text-zinc-700 font-normal mx-8 xs:mx-3 sm:mx-5 md:mx-7 px-5 my-4 sm:my-8 bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
               At Vision Classes Tuition Center, we are dedicated to providing high-quality education and personalized tutoring to help students achieve academic excellence. Our experienced educators and comprehensive curriculum ensure that every student reaches their full potential.
             </div>
 
-            <div className=" text-zinc-700 font-normal mx-10 px-5 my-4 sm:my-12  bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
+            <div className=" text-zinc-700 font-normal mx-8 xs:mx-3 sm:mx-5 md:mx-7  px-5 my-4 sm:my-8  bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
 
               Our mission is to provide high-quality education and support to students, helping them to unlock their full potential and achieve their academic goals. Personalized attention to address specific learning challenges. Collaborative learning in small groups to encourage peer interaction.
             </div>
 
-            <div className=" text-zinc-700 font-normal mx-10 px-5 my-4 sm:my-12  bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
+            <div className=" text-zinc-700 font-normal mx-8 xs:mx-3 sm:mx-5 md:mx-7  px-5 my-4 sm:my-8  bg-white  p-4 rounded-lg shadow-md shadow-gray-400 hover:shadow-lg hover:shadow-gray-700 drop-shadow-md duration-300 ">
 
               Unlock your child's full potential with Vision Classes, where dedicated educators and a personalized approach make all the difference. Whether your child needs a little extra help or wants to excel beyond the classroom, we have the resources and expertise to guide them to success.
             </div>

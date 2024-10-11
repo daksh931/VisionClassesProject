@@ -69,7 +69,8 @@ export default function Login() {
             {/* //custom Button component not working */}
             {/* <button type="submit" className={"px-5 mt-5"} > Login </button> */}
           </div>
-            <div className="flex justify-center text-md hover:text-white mt-2"> <Link to={'/forgotpassword'}> Forgot Password?</Link> </div>
+            <div > <Link className="flex justify-center text-md hover:text-white mt-2" to={'/forgotpassword'}> Forgot Password?</Link> 
+            </div>
         </div>
       </div>
       </form>

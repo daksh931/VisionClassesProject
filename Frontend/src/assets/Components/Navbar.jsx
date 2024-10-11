@@ -13,9 +13,9 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const navigate = useNavigate();
 
-  
+
   // selecting Total Quantity, token from cartSlice
-  const {totalQuantity} = useSelector(state => state.cart)
+  const { totalQuantity } = useSelector(state => state.cart)
   // console.log(useSelector(state => state.cart))
   // console.log(useSelector(state => state.auth))
 
@@ -43,17 +43,17 @@ export default function Navbar() {
   return (
     <>
       <div id="mainNav" className=" p-0 m-0 top-0 w-full" >
-        <div className="bg-zinc-800 text-white flex justify-between w-full sm:hidden">
+        <div className="bg-zinc-800 text-white flex justify-between w-full md:hidden">
           <div>
             <button onClick={navSet}>
               <div
-                className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "flex" : "hidden p-0"
+                className={` barIcon text-4xl p-4 md:hidden ${navNutton ? "flex" : "hidden p-0"
                   }`}
               >
                 <FaBars />
               </div>
               <div
-                className={` barIcon text-4xl p-4 sm:hidden ${navNutton ? "hidden" : "flex z-50"
+                className={` barIcon text-4xl p-4 md:hidden ${navNutton ? "hidden" : "flex z-50"
                   }`}
               >
                 <FaArrowLeft />
@@ -63,23 +63,24 @@ export default function Navbar() {
           </div>
 
           {token == null && <div className="text-center w-[100vw] flex items-center justify-end">
-           
-           <Button to={"/signup"}>Sign Up</Button>
+
+            <Button to={"/signup"}>Sign Up</Button>
 
             <Button to={"/login"}>Login</Button>
 
           </div>}
-          {token != null && <div className="flex items-center">
-            
-          <Link id='cart' className="text-4xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-2xl font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
+          {token != null &&
+            <div className="flex items-center">
+              <Link id='cart' className="text-4xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <PiShoppingCartSimpleBold />  <span className="text-2xl font-semibold relative pt-2 -left-1 "> {totalQuantity}</span> </div> </Link>
 
-            <Link className="text-4xl px-4" to="/logout"> <LuLogOut /></Link>
+              <Link className="text-4xl px-4" to="/logout"> <LuLogOut /></Link>
 
-          </div>}
+            </div>
+          }
         </div>
 
         {/* lower to small screen  */}
-        <div id="LowerMain" className="sm:hidden ">
+        <div id="LowerMain" className="md:hidden ">
           <div onClick={navSet}
             className={` z-10 navItems flex flex-col space-y-5 rounded-b-3xl absolute text-2xl pt-4 pb-[100px]  text-start h-[calc(100vh-138px)] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
               } `}
@@ -94,17 +95,17 @@ export default function Navbar() {
             >
               Dashboard
             </Link>
-            
+
             {/* { ( token==undefined || (token!==null && userData.role =='user') ) && 
             <Link to="/buyCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
               Buy Course
             </Link>
             } */}
 
-            {token !== null && userData.role =='admin' && 
-            <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
-              Add Course
-            </Link>
+            {token !== null && userData.role == 'admin' &&
+              <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+                Add Course
+              </Link>
             }
             <Link to="/courses" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
               Courses
@@ -120,7 +121,7 @@ export default function Navbar() {
 
         {/* from small to large screen   */}
         <div
-          className="navItems hidden sm:flex h-12 w-full justify-start text-white z-10"
+          className="navItems hidden md:flex h-12 w-full justify-start text-white z-10"
           style={{ backgroundColor: "rgb(50,51,52)" }}
         >
           <div className="flex flex-nowrap text-nowrap ">
@@ -135,11 +136,11 @@ export default function Navbar() {
               Buy Course
             </Link>
             } */}
-            
-            {token !== null && userData.role =='admin' && 
-            <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
-              Add Course
-            </Link>
+
+            {token !== null && userData.role == 'admin' &&
+              <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
+                Add Course
+              </Link>
             }
 
             <Link
@@ -168,8 +169,8 @@ export default function Navbar() {
 
           </div>}
           {token !== null &&
-            <div className=" text-center w-[100vw] flex flex-wrap items-center justify-end	">
-              <div >
+            <div className=" text-center w-[50vw] flex flex-wrap items-center justify-end ">
+              <div className=" hidden ">
 
                 <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
                   Hi, {userData.name}
@@ -180,7 +181,7 @@ export default function Navbar() {
                   < FaUser />
                 </a>
               </button>
-          
+
 
               <div onMouseLeave={profileExpand} className={`absolute font-sans top-12 border-t-0 right-12 z-20 text-black text-xl cursor-pointer  rounded-b-xl shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200 border-[3px] border-zinc-100 
               ${profileHover ? "hidden" : "flex"}`}>
@@ -189,10 +190,10 @@ export default function Navbar() {
                   <Link to="updateProfile">  <li className="border-b-slate-800 border-[0.5px] px-4 -mx-[0.7px] border-none hover:text-zinc-200  p-2 hover:bg-zinc-600">Update Profile</li> </Link>
                   <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">My Courses</li>
                   <li className="border-b-slate-800 border-[0.5px] px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600 ">New Courses </li>
-                  <Link  to="/logout"> <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li></Link>
+                  <Link to="/logout"> <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li></Link>
                 </ul>
               </div>
-              <Link id='cart'  className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <a> <PiShoppingCartSimpleBold/> </a> <a className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</a> </div> </Link>
+              <Link id='cart' className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <PiShoppingCartSimpleBold />  <span className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</span> </div> </Link>
               <Link className="text-2xl px-4 hover:text-zinc-400" to="/logout"> <LuLogOut /></Link>
             </div>
           }
