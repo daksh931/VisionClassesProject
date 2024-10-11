@@ -1,15 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    userData : localStorage.getItem("user")
-    ?JSON.parse(localStorage.getItem("user")):null ,
-    
-   
+const userFromStorage = localStorage.getItem("user");
+const tokenFromStorage = localStorage.getItem("token");
 
-    token :  localStorage.getItem("token")
-        ?JSON.parse(localStorage.getItem("token"))
-        : null
+const initialState = {
+    userData: userFromStorage && tokenFromStorage ? JSON.parse(userFromStorage) : null,
+    token: userFromStorage && tokenFromStorage ? JSON.parse(tokenFromStorage) : null
 };
+
+// Check if either userData or token is null, and perform logout
+if (!initialState.userData || !initialState.token) {
+    // Clear localStorage and trigger logout
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    // window.location.href = '/login'; // Redirect to login page
+}
+
+// const initialState = {
+//     userData : localStorage.getItem("user")
+//     ?JSON.parse(localStorage.getItem("user")):null ,
+    
+
+//     token :  localStorage.getItem("token")
+//         ?JSON.parse(localStorage.getItem("token"))
+//         : null
+
+//     };
 
 const authSlice = createSlice({
     name:"auth",
