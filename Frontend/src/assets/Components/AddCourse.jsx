@@ -65,7 +65,7 @@ const AddCourse = () => {
         <div className='flex flex-col w-full min-h-[140vh] bg-slate-300'>
           
    
-          <div id="maindiv" className='py-7 mt-5 px-2 w-80 shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200 border-[3px] border-zinc-100 rounded-md flex flex-col self-center text-white'>
+          <div id="maindiv" className='py-7 mt-5 px-2 w-80 shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200  rounded-md flex flex-col self-center text-white'>
             <a className='text-zinc-900 text-2xl text-center font-bold'>Add New Course</a>
             <Input placeholder={"Course Title"}  onChange={(e) => setTitle(e.target.value)} />
             <Input placeholder={"Course Description"} onChange={(e) => setDescription(e.target.value)} />
@@ -80,9 +80,9 @@ const AddCourse = () => {
             <input type='file' style={{display: 'none'}} onChange={ (e) => setUploadFileName(e.target.files[0].name.substring(0, 18)) & setImage(e.target.files[0])} />   
       </label>
     </div>
-            <button type="submit" className="align-middle w-36 min-h-8 select-none font-sans font-bold text-center
+            <button type="submit" className="align-middle flex place-content-center self-center w-36 min-h-8 select-none font-sans font-bold text-center
          uppercase  disabled:pointer-events-none
-          text-xs py-2 px-3 rounded-lg bg-zinc-600
+          text-xs py-2 px-3 rounded-lg bg-zinc-600 
            text-white  border-2 border-gray-700 hover:bg-zinc-700 hover:border-zinc-900 text-nowrap mx-2">
               Add </button>
           </div>

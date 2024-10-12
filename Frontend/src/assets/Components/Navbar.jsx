@@ -79,7 +79,7 @@ export default function Navbar() {
           }
         </div>
 
-        {/* lower to small screen  */}
+        {/* lower to md screen  navbar hidden button in vertical view */}
         <div id="LowerMain" className="md:hidden ">
           <div onClick={navSet}
             className={` z-10 navItems flex flex-col space-y-5 rounded-b-3xl absolute text-2xl pt-4 pb-[100px]  text-start h-[calc(100vh-138px)] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
@@ -119,7 +119,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* from small to large screen   */}
+        {/* from small to large screen navbar options left side*/}
         <div
           className="navItems hidden md:flex h-12 w-full justify-start text-white z-10"
           style={{ backgroundColor: "rgb(50,51,52)" }}
@@ -157,10 +157,9 @@ export default function Navbar() {
               Contact Us
             </Link>
 
-
           </div>
 
-          {/* Sign up login buttons right side Nav */}
+          {/* Sign up login buttons right side Navbar section without login */}
 
           {token == null && <div className="text-center w-[100vw] flex items-center justify-end">
             <Button to={"/signup"}>Sign Up</Button>
@@ -168,9 +167,12 @@ export default function Navbar() {
             <Button to={"/login"}>Login</Button>
 
           </div>}
+
+          {/* Right side section of Navbar on lg screen with login */}
+          
           {token !== null &&
-            <div className=" text-center w-[50vw] flex flex-wrap items-center justify-end ">
-              <div className=" hidden ">
+            <div className=" text-center flex flex-wrap items-center justify-end w-full">
+              <div className=" hidden lg:block ">
 
                 <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
                   Hi, {userData.name}
@@ -182,7 +184,7 @@ export default function Navbar() {
                 </a>
               </button>
 
-
+              {/*  Drop down menu of profile button navbar */}
               <div onMouseLeave={profileExpand} className={`absolute font-sans top-12 border-t-0 right-12 z-20 text-black text-xl cursor-pointer  rounded-b-xl shadow-xl  shadow-slate-400 hover:shadow-slate-600  bg-slate-200 border-[3px] border-zinc-100 
               ${profileHover ? "hidden" : "flex"}`}>
                 <ul >
@@ -193,6 +195,10 @@ export default function Navbar() {
                   <Link to="/logout"> <li className="border-b-slate-800 border-[0.5px] rounded-b-lg px-2 -mx-[0.7px] border-none hover:text-zinc-200  p-2  hover:bg-zinc-600">Logout</li></Link>
                 </ul>
               </div>
+                {/*  end of drop down menu of profile button navbar */}
+
+
+              {/* cart and logout button on lg screen navbar */}
               <Link id='cart' className="text-2xl pl-2  hover:text-zinc-400" to="/cart"> <div className="relative flex items-center"> <PiShoppingCartSimpleBold />  <span className="text-[15px] font-semibold relative pt-2 -left-1 "> {totalQuantity}</span> </div> </Link>
               <Link className="text-2xl px-4 hover:text-zinc-400" to="/logout"> <LuLogOut /></Link>
             </div>
