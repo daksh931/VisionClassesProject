@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaMinus } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/Slices/cartSlice";
 
@@ -30,13 +32,17 @@ export default function CItem(props) {
 
     return (
         <>
+            {/* one Item in cart display main div  */}
+                <div className=' w-full p-1  bg-zinc-100 '>
 
-            <div className='flex flex-col sm:flex-row w-full my-5 px-5 justify-between '>
+            <div className='flex flex-col sm:flex-row border-2 justify-between border-zinc-200 w-full p-2 rounded-md '>
 
-                <div className='flex'>
+
+                {/* div-1 image title price per item  */}
+                <div className='flex '>
                     <div id='Course photo' className=' mr-2'>
                         <img
-                            className=" pb-2 rounded-md object-cover h-16 w-20"
+                            className=" pb-2 rounded-md object-cover h-28 w-24 md:h-36 md:w-32"
                             src={props.image}
                             alt="Course Image ">
                         </img>
@@ -48,26 +54,28 @@ export default function CItem(props) {
                     </div>
                 </div>
 
-                <div className='flex flex-col items-end'>
+                {/* div-2  Quantity add+ subs- buttons total price   */}
+                <div className='flex flex-col justify-end mt-5 md:mt-0'>
 
-                    <div id='buttons' className='flex'>
-                        <button onClick={removeCartHandler} className="align-middle  font-normal text-center uppercase  text-xl px-3 py-0 rounded-md bg-zinc-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.95] border-[1px]
-        border-white hover:border-zinc-900 text-nowrap">
-                            - </button>
-                        <a className='pt-[4px] px-1 min-w-8 text-center'>{props.quantity}</a>
+                    <div id='buttons' className='flex  pr-5'>
+                    <button onClick={removeCartHandler} className="border-2 border-gray-500 px-2 h-8 rounded-md hover:bg-zinc-700 hover:text-white">
+                            <FaMinus /> </button>
+                        
+           
+                        <span className='pt-[4px] px-1 min-w-8 text-center'>{props.quantity}</span>
 
-                        <button onClick={addToCartHandler} className="align-middle  font-normal  text-center uppercase  text-xl px-3 py-0 rounded-md bg-zinc-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-[1px]
-        border-white hover:border-zinc-900 text-nowrap">
-                            + </button>
+                        <button onClick={addToCartHandler} className="border-2 border-gray-500 px-2 h-8 rounded-md hover:bg-zinc-700 hover:text-white font-extrabold text-xl">
+                            < IoMdAdd /> </button>
                     </div>
-                    <div id='totalprice per cartItem' className='flex  font-mono font-bold tracking-tighter min-w-40'>
-                        <a> Total Price - {props.totalPrice} </a>
+                    <div id='totalprice per cartItem' className='flex  font-semibold tracking-tighter min-w-40 pt-3'>
+                        <span> Total Price - ₹ {props.totalPrice} </span>
                     </div>
 
                 </div>
 
             </div>
 
+            </div>
           
 
         </>
