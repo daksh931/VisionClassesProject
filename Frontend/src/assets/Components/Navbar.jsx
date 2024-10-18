@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { FaBars } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   if (userData == null && token != null) {
     console.log(userData)
-    navigate('/logout')
+    return navigate('/logout')
   }
   // console.log(userData)
 

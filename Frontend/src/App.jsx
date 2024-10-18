@@ -15,33 +15,36 @@ import Footer from './assets/Components/Footer'
 import About from './assets/Components/About'
 import Contact from './assets/Components/Contact'
 import Cookies from 'js-cookie';
+import ProtectedRoute from './ProtectedRoute'
 
 function App() {
   const token = Cookies.get('token');
   console.log(token)
-  
+
   return (
     <div>
       <Navbar />
       {/* by writing 'exact' prop in <Route> */}
       <Routes>
-        <Route path='/profile'  element={ <Profile /> }/>
-        <Route path='/updateProfile'  element={ <UpdateProfile /> }/>
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/forgotpassword' element={<ForgotPassword />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/password/reset/:userid/:token' element={<ResetPassword />} />
 
-        <Route path='/signup'  element={ <Signup /> }/>
-        <Route path='/login' element={ <Login /> }/>
-        <Route path='/logout' element={ <Logout /> }/>
-        <Route path='/' element={ <HomePage /> }/>
-        <Route path='/courses' element={ <Courses /> }/>
-        <Route path='/addCourse' element={ <AddCourse /> }/>
-        <Route path='/about' element={ <About /> }/>
-        <Route path='/contact' element={ <Contact /> }/>
+        <Route path ='/' element={<ProtectedRoute />} >
+
+          <Route path='profile' element={<Profile />} />
+          <Route path='updateProfile' element={<UpdateProfile />} />
+          <Route path='logout' element={<Logout />} />
+          <Route path='courses' element={<Courses />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='addCourse' element={<AddCourse />} />
 
 
-        <Route path='/forgotpassword' element={ <ForgotPassword /> }/>
-        <Route path='/password/reset/:userid/:token' element={ <ResetPassword /> }/>
-        
-        <Route path='/cart' element={ <Cart /> }/>
+        </Route>
       </Routes>
       <Footer />
     </div>
