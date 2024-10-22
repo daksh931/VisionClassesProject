@@ -17,7 +17,7 @@ const ProtectedRoute = () => {
     }
     },[token, userData, navigate])
 
-    if(token !== null && (userData.role == "admin" || userData.role == "user" )){
+    if(token !== null && userData){
         return <Outlet />
     }
     

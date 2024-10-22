@@ -16,6 +16,7 @@ import About from './assets/Components/About'
 import Contact from './assets/Components/Contact'
 import Cookies from 'js-cookie';
 import ProtectedRoute from './ProtectedRoute'
+import AdminRoute from './AdminRoute'
 
 function App() {
   const token = Cookies.get('token');
@@ -34,14 +35,17 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/password/reset/:userid/:token' element={<ResetPassword />} />
 
-        <Route path ='/' element={<ProtectedRoute />} >
+        <Route path='/' element={<ProtectedRoute />} >
 
           <Route path='profile' element={<Profile />} />
           <Route path='updateProfile' element={<UpdateProfile />} />
           <Route path='logout' element={<Logout />} />
           <Route path='courses' element={<Courses />} />
           <Route path='cart' element={<Cart />} />
-          <Route path='addCourse' element={<AddCourse />} />
+
+          <Route path='/' element={<AdminRoute />}>
+            <Route path='addCourse' element={<AddCourse />} />
+          </Route>
 
 
         </Route>
