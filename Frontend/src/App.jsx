@@ -34,14 +34,16 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/password/reset/:userid/:token' element={<ResetPassword />} />
+          <Route path='courses' element={<Courses />} />
+          <Route path='cart' element={<Cart />} />
 
+        
         <Route path='/' element={<ProtectedRoute />} >
 
           <Route path='profile' element={<Profile />} />
           <Route path='updateProfile' element={<UpdateProfile />} />
           <Route path='logout' element={<Logout />} />
-          <Route path='courses' element={<Courses />} />
-          <Route path='cart' element={<Cart />} />
+        
 
           <Route path='/' element={<AdminRoute />}>
             <Route path='addCourse' element={<AddCourse />} />
