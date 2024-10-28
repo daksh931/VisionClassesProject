@@ -29,27 +29,21 @@ function App() {
       <Routes>
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Courses />} />
+        {/* <Route path='/' element={<Courses />} /> */}
+        <Route path='/' element={<HomePage/>}/>
         <Route path='/forgotpassword' element={<ForgotPassword />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/password/reset/:userid/:token' element={<ResetPassword />} />
-          <Route path='courses' element={<Courses />} />
-          <Route path='cart' element={<Cart />} />
-
-        
+        <Route path='courses' element={<Courses />} />
+        <Route path='cart' element={<Cart />} />
         <Route path='/' element={<ProtectedRoute />} >
-
           <Route path='profile' element={<Profile />} />
           <Route path='updateProfile' element={<UpdateProfile />} />
           <Route path='logout' element={<Logout />} />
-        
-
           <Route path='/' element={<AdminRoute />}>
-            <Route path='addCourse' element={<AddCourse />} />
+          <Route path='addCourse' element={<AddCourse />} />
           </Route>
-
-
         </Route>
       </Routes>
       <Footer />

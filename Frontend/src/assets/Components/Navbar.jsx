@@ -43,7 +43,7 @@ export default function Navbar() {
   return (
     <>
       <div id="mainNav" className=" p-0 m-0 top-0 w-full" >
-        <div className="bg-zinc-800 text-white flex justify-between w-full md:hidden">
+        <div className=" bg-gray-900 text-white flex justify-between w-full md:hidden">
           <div>
             <button onClick={navSet}>
               <div
@@ -124,7 +124,7 @@ export default function Navbar() {
           className="navItems hidden md:flex h-12 w-full justify-start text-white z-10"
           style={{ backgroundColor: "rgb(50,51,52)" }}
         >
-          <div className="flex flex-nowrap text-nowrap ">
+          <div className="bg-gray-900 flex flex-nowrap text-nowrap ">
             <Link
               to="/"
               className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
@@ -171,7 +171,7 @@ export default function Navbar() {
           {/* Right side section of Navbar on lg screen with login */}
           
           {token !== null &&
-            <div className=" text-center flex flex-wrap items-center justify-end w-full">
+            <div className=" bg-gray-900 text-center flex flex-wrap items-center justify-end w-full">
               <div className=" hidden lg:block ">
 
                 <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
