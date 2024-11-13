@@ -18,9 +18,12 @@ import Cookies from 'js-cookie';
 import ProtectedRoute from './ProtectedRoute'
 import AdminRoute from './AdminRoute'
 
+
 function App() {
   const token = Cookies.get('token');
   console.log(token)
+
+  
 
   return (
     <div>
@@ -29,6 +32,7 @@ function App() {
       <Routes>
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        {/* <Route path='/googlelogin' element={< />} /> */}
         {/* <Route path='/' element={<Courses />} /> */}
         <Route path='/' element={<HomePage/>}/>
         <Route path='/forgotpassword' element={<ForgotPassword />} />

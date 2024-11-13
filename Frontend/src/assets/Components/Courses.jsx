@@ -35,7 +35,7 @@ fetchData();
 
   return (
     <>
-    <div className="w-full min-h-[100vh] bg-slate-300">
+    <div className="w-full min-h-[100vh] bg-slate-100">
       <div className=" flex  flex-wrap px-10 pb-3 pt-5 sm:pt-1  justify-center  w-full">
         {/* {console.log("courseData  " + courseData)} */}
             {courseData.map((item,index) =>

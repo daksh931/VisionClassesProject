@@ -70,8 +70,8 @@ export default function Signup() {
     <>
       <form method="post" onSubmit={handleSubmit}  >
 
-        <div id="Signup-container" className="flex flex-col w-full min-h-[120vh] bg-slate-300">
-          <div className="self-center mt-12 shadow-xl  shadow-zinc-400 hover:shadow-zinc-500  rounded-md border-4 border-white  min-h-72 min-w-72  bg-slate-400 p-4 font-semibold">
+        <div id="Signup-container" className="flex flex-col w-full min-h-[120vh] bg-slate-100">
+          <div className="self-center mt-12 shadow-xl  shadow-zinc-200 hover:shadow-zinc-300  rounded-md border-[1px] border-gray-400  min-h-96 min-w-80  bg-slate-50 p-4 font-semibold">
             <h2 className="text-slate-700 text-center font-bold text-2xl ">
               Signup Here
             </h2>
@@ -95,11 +95,14 @@ export default function Signup() {
             </div>
 
             <div className="flex justify-center w-full">
-              {/* <Button to={'/'} style={"px-5 mt-5"} > Signup </Button> */}
+                <button type="submit" className="w-full flex  ">
+
+                <Button to={''} style={"px-5 mt-5 w-full"} > Signup </Button>
+                </button>
               {/* //custom Button component not working */}
 
-              <button type="submit" className="align-middle min-h-8 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
-                Signup </button>
+              {/* <button type="submit" className="align-middle min-h-8 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
+                Signup </button> */}
             </div>
           </div>
         </div>

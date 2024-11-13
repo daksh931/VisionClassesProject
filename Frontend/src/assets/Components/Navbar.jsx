@@ -42,7 +42,10 @@ export default function Navbar() {
 
   return (
     <>
+
       <div id="mainNav" className=" p-0 m-0 top-0 w-full" >
+
+        {/* upper space when navbar button mode (small) */}
         <div className=" bg-gray-900 text-white flex justify-between w-full md:hidden">
           <div>
             <button onClick={navSet}>
@@ -79,7 +82,7 @@ export default function Navbar() {
           }
         </div>
 
-        {/* lower to md screen  navbar hidden button in vertical view */}
+        {/* lower to md screen  navbar hidden button in vertical view (mobile mode)*/}
         <div id="LowerMain" className="md:hidden ">
           <div onClick={navSet}
             className={` z-10 navItems flex flex-col space-y-5 rounded-b-3xl absolute text-2xl pt-4 pb-[100px]  text-start h-[calc(100vh-138px)] w-[85vw]  px-2 py-1 text-white ${navNutton ? "hidden" : "top-15 pt-0 flex "
@@ -91,7 +94,7 @@ export default function Navbar() {
           >
             <Link
               to="/"
-              className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white"
+              className="py-4 pl-8 cursor-pointer font-semibold  hover:text-white hover:rounded-xl border-b-2 border-white"
             >
               Dashboard
             </Link>
@@ -103,17 +106,17 @@ export default function Navbar() {
             } */}
 
             {token !== null && userData.role == 'admin' &&
-              <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+              <Link to="/addCourse" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-slate-800 hover:text-white hover:rounded-xl border-b-2 border-white">
                 Add Course
               </Link>
             }
-            <Link to="/courses" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+            <Link to="/courses" className="py-4 pl-8 cursor-pointer font-semibold hover:bg-slate-800 hover:text-white hover:rounded-xl border-b-2 border-white">
               Courses
             </Link>
-            <Link to='/about' className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+            <Link to='/about' className="py-4 pl-8 cursor-pointer font-semibold hover:bg-slate-800 hover:text-white hover:rounded-xl border-b-2 border-white">
               About Us
             </Link>
-            <Link to='/contact' className="py-4 pl-8 cursor-pointer font-semibold hover:bg-gray-600 hover:text-white hover:rounded-xl border-b-2 border-white">
+            <Link to='/contact' className="py-4 pl-8 cursor-pointer font-semibold hover:bg-slate-800 hover:text-white hover:rounded-xl border-b-2 border-white">
               Contact Us
             </Link>
           </div>
@@ -121,13 +124,13 @@ export default function Navbar() {
 
         {/* from small to large screen navbar options left side*/}
         <div
-          className="navItems hidden md:flex h-12 w-full justify-start text-white z-10"
-          style={{ backgroundColor: "rgb(50,51,52)" }}
+          className="navItems hidden md:flex h-12 w-full justify-start text-white hover:text-zinc-600 z-10"
+          style={{ backgroundColor: "rgb(0,0,0)" }}
         >
-          <div className="bg-gray-900 flex flex-nowrap text-nowrap ">
+          <div className=" flex flex-nowrap text-nowrap ">
             <Link
               to="/"
-              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
               Dashboard
             </Link>
 
@@ -138,22 +141,22 @@ export default function Navbar() {
             } */}
 
             {token !== null && userData.role == 'admin' &&
-              <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800 hover:text-white hover:rounded-xl">
+              <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
                 Add Course
               </Link>
             }
 
             <Link
               to="/courses"
-              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
               Courses
             </Link>
 
-            <Link to="/about" className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+            <Link to="/about" className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
               About Us
             </Link>
 
-            <Link to="/contact" className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-800  hover:text-white hover:rounded-xl">
+            <Link to="/contact" className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-900 hover:text-white hover:rounded-sm">
               Contact Us
             </Link>
 
@@ -171,10 +174,10 @@ export default function Navbar() {
           {/* Right side section of Navbar on lg screen with login */}
           
           {token !== null &&
-            <div className=" bg-gray-900 text-center flex flex-wrap items-center justify-end w-full">
+            <div className=" text-center flex flex-wrap items-center justify-end w-full">
               <div className=" hidden lg:block ">
 
-                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-zinc-800 text-nowrap hover:text-white hover:rounded-xl">
+                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-slate-800 text-nowrap hover:text-white hover:rounded-xl">
                   Hi, {userData.name}
                 </h1>
               </div>
