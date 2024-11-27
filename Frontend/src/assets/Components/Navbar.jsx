@@ -94,7 +94,7 @@ export default function Navbar() {
           >
             <Link
               to="/"
-              className="py-4 pl-8 cursor-pointer font-semibold  hover:text-white hover:rounded-xl border-b-2 border-white"
+              className="py-4 pl-8 cursor-pointer font-semibold  hover:text-white hover:rounded-xl border-b-2 border-white " 
             >
               Dashboard
             </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
           <div className=" flex flex-nowrap text-nowrap ">
             <Link
               to="/"
-              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
+              className="flex px-5 items-center  cursor-pointer font-semibold  hover:bg-zinc-900 hover:text-gray-300 hover:rounded-sm">
               Dashboard
             </Link>
 
@@ -141,22 +141,22 @@ export default function Navbar() {
             } */}
 
             {token !== null && userData.role == 'admin' &&
-              <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
+              <Link to="/addCourse" className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-gray-400 hover:rounded-sm">
                 Add Course
               </Link>
             }
 
             <Link
               to="/courses"
-              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
+              className="flex px-5 items-center  cursor-pointer font-semibold hover:bg-zinc-900 hover:text-gray-400 hover:rounded-sm">
               Courses
             </Link>
 
-            <Link to="/about" className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-900 hover:text-white hover:rounded-sm">
+            <Link to="/about" className="flex px-5 items-center cursor-pointer font-semibold hover:bg-zinc-900 hover:text-gray-400 hover:rounded-sm">
               About Us
             </Link>
 
-            <Link to="/contact" className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-900 hover:text-white hover:rounded-sm">
+            <Link to="/contact" className="flex px-5 items-center cursor-pointer font-semibold text-justify hover:bg-zinc-900 hover:text-gray-400  hover:rounded-sm">
               Contact Us
             </Link>
 
@@ -177,7 +177,7 @@ export default function Navbar() {
             <div className=" text-center flex flex-wrap items-center justify-end w-full">
               <div className=" hidden lg:block ">
 
-                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  hover:bg-slate-800 text-nowrap hover:text-white hover:rounded-xl">
+                <h1 className="pr-5 pt-2 py-1 pl-2 text-xl cursor-pointer font-semibold text-center  text-nowrap text-white hover:text-gray-400 hover:rounded-xl">
                   Hi, {userData.name}
                 </h1>
               </div>
