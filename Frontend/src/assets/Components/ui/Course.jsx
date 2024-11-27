@@ -2,7 +2,6 @@ import Button from "./Button";
 import { useDispatch ,useSelector} from "react-redux";
 import cartSlice from "../../../store/Slices/cartSlice";
 import { cartActions } from "../../../store/Slices/cartSlice";
-import { useNavigate } from "react-router-dom";
 
 export default function Course(props) {
 

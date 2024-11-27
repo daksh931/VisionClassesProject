@@ -2,9 +2,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { setToken,setUserData } from '../../store/Slices/authSlice';
+import Loading from './ui/Loading';
+import { useState } from 'react';
 
 export default function Logout() {
-
+  
+  const[loading,setLoading] = useState(true);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleLogout = async (e) =>{
@@ -21,13 +24,20 @@ export default function Logout() {
 
             dispatch(setUserData(null))
             localStorage.removeItem("user")
+            }).finally( ()=> {
+              setLoading(false);
             })
         
         // console.log(response)
         return navigate('/')
     }
     handleLogout();
-    
+
+
+    if(loading){
+      return(
+      <Loading />)
+    }
   return (
     <></>)
 }

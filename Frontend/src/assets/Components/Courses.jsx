@@ -1,13 +1,16 @@
 import Course from "./ui/Course";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "./ui/Loading";
+
 
 export default function Courses() {
   const [courseData, setCourseData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const[loading,setLoading] = useState(true);
   const itemsPerPage = 3;
-
+  
   useEffect(() => {
     // console.log("worked")
     function fetchData(page) {
@@ -19,12 +22,17 @@ export default function Courses() {
           setCourseData(response.data.courses);
           setTotalPages(response.data.totalPages); // Update based on backend response
         })
-        .catch((error) => console.error("Error fetching data:", error));
+        .catch((error) => console.error("Error fetching data:", error))
+        .finally( ()=>
+          {
+            setLoading(false)
+    });
     }
 
     fetchData(currentPage);
   }, [currentPage]);
 
+  
   function handleNextPage() {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
@@ -35,6 +43,12 @@ export default function Courses() {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
+  }
+
+
+  if(loading){
+    return(
+    <Loading />)
   }
 
   return (
