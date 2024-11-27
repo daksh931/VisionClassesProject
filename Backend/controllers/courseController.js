@@ -4,16 +4,34 @@ import { Course } from "../models/courseSchema.js";
 import { User } from "../models/userSchema.js";
 import {uploadOnCloudinary} from "../utils/Cloudinary.js"
 
-// Get all products 
-export const getAllCourses = catchAsyncError( async(req,res,next)=>{
-    const courses = await Course.find({});
-    res.status(200).json({
-        sucess:true,
-        courses,
-    });
-});
+// Get all products route
+// export const getAllCourses = catchAsyncError( async(req,res,next)=>{
+//     const courses = await Course.find({});
+//     res.status(200).json({
+//         sucess:true,
+//         courses,
+//     });
+// });
+   
 
-// update product
+export const getAllCourses = catchAsyncError( async(req,res,next)=>{
+    const { page = 1, limit = 6 } = req.query;
+    const skip = (page - 1) * limit;
+  
+    const courses = await Course.find().skip(skip).limit(Number(limit));
+    const totalCourses = await Course.countDocuments();
+  
+    res.json({
+      courses,
+      totalPages: Math.ceil(totalCourses / limit),
+      currentPage: Number(page),
+    });
+  
+});
+   
+
+
+// update product route
 export const updateCourse = catchAsyncError( async(req,res,next)=>{
     const user = req.user;
     if(user.role === "user"){
@@ -94,7 +112,7 @@ export const postCourse = catchAsyncError( async(req,res,next)=>{
         course,
     })
 })
-
+    
 // only users can buy courses 
 export const buyCourse = catchAsyncError( async (req,res,next)=>{
     const user = req.cookies.user;

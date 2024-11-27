@@ -76,6 +76,8 @@ userSchema.methods.getResetPasswordToken = async function(){
 
     this.resetPasswordExpire = Date.now() + 15* 60* 1000;
     return resetToken;
+
+    //this.resetPasswordExpire & this.resetPasswordToken fields are created in dbase and we can fetch & verify from user schema
 }
 
 // generating a jwt tokem for auth   ** Don't use '() =>' functions otherwise code will not work....

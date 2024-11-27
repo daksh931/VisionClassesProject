@@ -7,8 +7,7 @@ import {User} from "../models/userSchema.js"
 export const isAuthorized = catchAsyncError(async(req,res,next )=>{
     // req.cookies.token will not work bcoz req.cookies does not contain any nested obj 'token'.
     //  req.cookies is the token itself....
-    const {token} = req.cookies;
-    // console.log(token)
+    const token = req.cookies.token;
     if(!token){
         return next(new ErrorHandler("User not authorised", 400))
     }
@@ -17,7 +16,6 @@ export const isAuthorized = catchAsyncError(async(req,res,next )=>{
     // console.log(decoded)
     req.user = await User.findById(decoded.id);
     next();
-
 
     // jwt.verify(token, process.env.JWT_SECRET_KEY  ,(err, user)=>{
     //     if(err){
@@ -31,3 +29,9 @@ export const isAuthorized = catchAsyncError(async(req,res,next )=>{
 
 })
 
+export const isAdmin = (req, res, next) => {
+    if (req.user.role !== 'admin') {
+        return next(new ErrorHandler("You do not have permission to perform this action", 403));
+    }
+    next();
+};
