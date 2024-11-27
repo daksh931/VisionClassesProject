@@ -20,8 +20,6 @@ const ProtectedRoute = () => {
     if(token !== null && userData){
         return <Outlet />
     }
-    
-
 }
 
 export default ProtectedRoute;

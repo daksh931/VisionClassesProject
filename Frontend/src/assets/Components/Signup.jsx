@@ -28,11 +28,11 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(name, email, phone, password, role);
-
-    if(!name || !email || !phone || !password || !role){
+    console.log("signup worked")
+    if (!name || !email || !phone || !password || !role) {
       alert("Fields should not be empty")
     }
-    if(password && password.length <8){
+    if (password && password.length < 8) {
       alert("Password should contain atleast 8 letters")
     }
 
@@ -44,7 +44,7 @@ export default function Signup() {
       role: role
     }
     // console.log(signupData)
-    const response = await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/v1/user/register',
+    const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/v1/user/register',
       JSON.stringify(signupData),
       {
         headers: {
@@ -54,11 +54,11 @@ export default function Signup() {
       }).then((res) => {
         dispatch(setToken(res.data.token))
         localStorage.setItem("token", JSON.stringify(res.data.token))
-        
+
         // console.log(res.data)
-        
+
         dispatch(setUserData(res.data.user))
-       localStorage.setItem("user",JSON.stringify(res.data.user))
+        localStorage.setItem("user", JSON.stringify(res.data.user))
       })
 
 
@@ -95,14 +95,12 @@ export default function Signup() {
             </div>
 
             <div className="flex justify-center w-full">
-                <button type="submit" className="w-full flex  ">
+              
 
-                <Button to={''} style={"px-5 mt-5 w-full"} > Signup </Button>
-                </button>
-              {/* //custom Button component not working */}
-
-              {/* <button type="submit" className="align-middle min-h-8 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
-                Signup </button> */}
+              <button type="submit"
+                className={`align-middle w-full min-h-8 duration-300 select-none font-serif font-thin text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-md bg-zinc-950  text-white hover:text-gray-100 shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-[1px] border-gray-500 hover:border-gray-900 text-nowrap	 mx-2 `}
+              > Signup
+              </button>
             </div>
           </div>
         </div>

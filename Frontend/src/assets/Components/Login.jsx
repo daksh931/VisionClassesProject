@@ -66,12 +66,9 @@ export default function Login() {
             <div className="pt-6">
               
             <div className="flex justify-center w-full ">
-              {/* <button type="submit"  className="align-middle min-h-8 mt-2 select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-3 rounded-lg bg-gradient-to-tr from-zinc-700 via-zinc-900 to-zinc-700 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-2 border-gray-400 hover:border-white text-nowrap	 mx-2">
-               Login </button> */}
-              {/* //custom Button component not working */}
-
-              <button className="flex justify-center w-full">
-              <Button to={''} style={"px-5 mt-5 w-full"} > Login </Button>
+            <button type="submit"
+                className={`align-middle w-full min-h-8 duration-300 select-none font-serif font-thin text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 px-4 rounded-md bg-zinc-950  text-white hover:text-gray-100 shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] border-[1px] border-gray-500 hover:border-gray-900 text-nowrap	 mx-2 `}
+              > Login
               </button>
             </div>
             <div > <Link className="flex justify-center text-md text-zinc-900 hover:text-zinc-700 mt-2" to={'/forgotpassword'}> Forgot Password?</Link>
